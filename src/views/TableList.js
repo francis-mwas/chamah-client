@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 // react-bootstrap components
 import {
@@ -11,7 +11,7 @@ import {
   Container,
   Row,
   Col,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
 function TableList() {
   return (
@@ -21,10 +21,10 @@ function TableList() {
           <Col md="12">
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
-                <Card.Title as="h4">Striped Table with Hover</Card.Title>
-                <p className="card-category">
+                <Card.Title as="h4">Jamhurican Group Members</Card.Title>
+                {/* <p className="card-category">
                   Here is a subtitle for this table
-                </p>
+                </p> */}
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 <Table className="table-hover table-striped">
@@ -85,7 +85,7 @@ function TableList() {
               </Card.Body>
             </Card>
           </Col>
-          <Col md="12">
+          {/* <Col md="12">
             <Card className="card-plain table-plain-bg">
               <Card.Header>
                 <Card.Title as="h4">Table on Plain Background</Card.Title>
@@ -151,7 +151,7 @@ function TableList() {
                 </Table>
               </Card.Body>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </>

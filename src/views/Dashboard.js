@@ -1,5 +1,5 @@
-import React from "react";
-import ChartistGraph from "react-chartist";
+import React from 'react';
+import ChartistGraph from 'react-chartist';
 // react-bootstrap components
 import {
   Badge,
@@ -14,7 +14,7 @@ import {
   Form,
   OverlayTrigger,
   Tooltip,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
 function Dashboard() {
   return (
@@ -32,8 +32,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Number</p>
-                      <Card.Title as="h4">150GB</Card.Title>
+                      <p className="card-category">Target Revenue 2022</p>
+                      <Card.Title as="h4">$ 1,345</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -58,7 +58,7 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Revenue</p>
+                      <p className="card-category">Total Contribution</p>
                       <Card.Title as="h4">$ 1,345</Card.Title>
                     </div>
                   </Col>
@@ -68,7 +68,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="far fa-calendar-alt mr-1"></i>
-                  Last day
+                  Members contributions
                 </div>
               </Card.Footer>
             </Card>
@@ -84,8 +84,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Errors</p>
-                      <Card.Title as="h4">23</Card.Title>
+                      <p className="card-category">Total Balance</p>
+                      <Card.Title as="h4">$ 1000</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -94,7 +94,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="far fa-clock-o mr-1"></i>
-                  In the last hour
+                  This year's target balance
                 </div>
               </Card.Footer>
             </Card>
@@ -110,8 +110,8 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Followers</p>
-                      <Card.Title as="h4">+45K</Card.Title>
+                      <p className="card-category">All Members</p>
+                      <Card.Title as="h4">100</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -120,7 +120,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1"></i>
-                  Update now
+                  Current available members
                 </div>
               </Card.Footer>
             </Card>
@@ -130,22 +130,22 @@ function Dashboard() {
           <Col md="8">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Users Behavior</Card.Title>
-                <p className="card-category">24 Hours performance</p>
+                <Card.Title as="h4">Users Contributions Behaviour</Card.Title>
+                <p className="card-category">Financial year performance</p>
               </Card.Header>
               <Card.Body>
                 <div className="ct-chart" id="chartHours">
                   <ChartistGraph
                     data={{
                       labels: [
-                        "9:00AM",
-                        "12:00AM",
-                        "3:00PM",
-                        "6:00PM",
-                        "9:00PM",
-                        "12:00PM",
-                        "3:00AM",
-                        "6:00AM",
+                        '9:00AM',
+                        '12:00AM',
+                        '3:00PM',
+                        '6:00PM',
+                        '9:00PM',
+                        '12:00PM',
+                        '3:00AM',
+                        '6:00AM',
                       ],
                       series: [
                         [287, 385, 490, 492, 554, 586, 698, 695],
@@ -158,7 +158,7 @@ function Dashboard() {
                       low: 0,
                       high: 800,
                       showArea: false,
-                      height: "245px",
+                      height: '245px',
                       axisX: {
                         showGrid: false,
                       },
@@ -172,7 +172,7 @@ function Dashboard() {
                     }}
                     responsiveOptions={[
                       [
-                        "screen and (max-width: 640px)",
+                        'screen and (max-width: 640px)',
                         {
                           axisX: {
                             labelInterpolationFnc: function (value) {
@@ -213,7 +213,7 @@ function Dashboard() {
                 >
                   <ChartistGraph
                     data={{
-                      labels: ["40%", "20%", "40%"],
+                      labels: ['40%', '20%', '40%'],
                       series: [40, 20, 40],
                     }}
                     type="Pie"
@@ -246,46 +246,26 @@ function Dashboard() {
                   <ChartistGraph
                     data={{
                       labels: [
-                        "Jan",
-                        "Feb",
-                        "Mar",
-                        "Apr",
-                        "Mai",
-                        "Jun",
-                        "Jul",
-                        "Aug",
-                        "Sep",
-                        "Oct",
-                        "Nov",
-                        "Dec",
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'Mai',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec',
                       ],
                       series: [
                         [
-                          542,
-                          443,
-                          320,
-                          780,
-                          553,
-                          453,
-                          326,
-                          434,
-                          568,
-                          610,
-                          756,
+                          542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756,
                           895,
                         ],
                         [
-                          412,
-                          243,
-                          280,
-                          580,
-                          453,
-                          353,
-                          300,
-                          364,
-                          368,
-                          410,
-                          636,
+                          412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636,
                           695,
                         ],
                       ],
@@ -296,11 +276,11 @@ function Dashboard() {
                       axisX: {
                         showGrid: false,
                       },
-                      height: "245px",
+                      height: '245px',
                     }}
                     responsiveOptions={[
                       [
-                        "screen and (max-width: 640px)",
+                        'screen and (max-width: 640px)',
                         {
                           seriesBarDistance: 5,
                           axisX: {
