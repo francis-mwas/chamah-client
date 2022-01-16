@@ -31,19 +31,19 @@ function TableList() {
                   <thead>
                     <tr>
                       <th className="border-0">ID</th>
-                      <th className="border-0">Name</th>
-                      <th className="border-0">Salary</th>
-                      <th className="border-0">Country</th>
-                      <th className="border-0">City</th>
+                      <th className="border-0">First Name</th>
+                      <th className="border-0">Last Name</th>
+                      <th className="border-0">Email</th>
+                      <th className="border-0">Total contributions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>1</td>
-                      <td>Dakota Rice</td>
+                      <td>Dakota</td>
+                      <td>Doe</td>
+                      <td>doe@gmail.com</td>
                       <td>$36,738</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
                     </tr>
                     <tr>
                       <td>2</td>
