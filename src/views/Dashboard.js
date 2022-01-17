@@ -32,7 +32,7 @@ function Dashboard() {
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Target Revenue 2022</p>
+                      <p className="card-category">Target Contribution 2022</p>
                       <Card.Title as="h4">$ 1,345</Card.Title>
                     </div>
                   </Col>
@@ -42,7 +42,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1"></i>
-                  Update Now
+                  Total Target Contribution In 2022
                 </div>
               </Card.Footer>
             </Card>
@@ -238,8 +238,8 @@ function Dashboard() {
           <Col md="6">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">2017 Sales</Card.Title>
-                <p className="card-category">All products including Taxes</p>
+                <Card.Title as="h4">2021 Total Contribution</Card.Title>
+                <p className="card-category">All members contributions</p>
               </Card.Header>
               <Card.Body>
                 <div className="ct-chart" id="chartActivity">
