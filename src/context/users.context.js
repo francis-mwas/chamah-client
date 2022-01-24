@@ -1,9 +1,9 @@
 import React, { createContext } from 'react';
 
-const UsersContext = createContext();
+const UserContext = createContext();
 
-function UsersContextProvider(props) {
+function UserContextProvider(props) {
   const [users, setUsers] = useState([]);
 }
 
-export default { UsersContextProvider };
+export default { UserContextProvider };
