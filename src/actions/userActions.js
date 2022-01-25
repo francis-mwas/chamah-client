@@ -17,7 +17,7 @@ export const loginUser = async () => {
 
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    let res = await axios(`${ROOT_URL}` / login, reqOptions);
+    let res = await axios(`${API_URL}` / login, reqOptions);
     let data = res.data;
     if (data.userData) {
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
