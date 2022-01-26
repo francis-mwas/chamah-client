@@ -1,9 +1,10 @@
 import React, { createContext } from 'react';
 
-const UserContext = createContext();
+const UserAuthContext = createContext();
+const AuthDispatchContext = createContext();
 
-function UserContextProvider(props) {
+function AuthContextProvider(props) {
   const [users, setUsers] = useState([]);
 }
 
-export default { UserContextProvider };
+export default { AuthContextProvider, UserAuthContext, AuthDispatchContext };
