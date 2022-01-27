@@ -16,6 +16,7 @@
 
 */
 import Dashboard from 'views/Dashboard.js';
+import Login from 'views/Login';
 import UserProfile from 'views/UserProfile.js';
 import TableList from 'views/TableList.js';
 import Typography from 'views/Typography.js';
@@ -26,12 +27,20 @@ import Upgrade from 'views/Upgrade.js';
 
 const dashboardRoutes = [
   {
+    path: '/login',
+    name: 'User Login',
+    icon: 'nc-icon nc-circle-06',
+    component: Login,
+    isPrivate: false,
+  },
+  {
     upgrade: true,
     path: '/upgrade',
     name: 'Upgrade to PRO',
     icon: 'nc-icon nc-alien-33',
     component: Upgrade,
     layout: '/admin',
+    isPrivate: true,
   },
   {
     path: '/dashboard',
@@ -39,6 +48,7 @@ const dashboardRoutes = [
     icon: 'nc-icon nc-chart-pie-35',
     component: Dashboard,
     layout: '/admin',
+    isPrivate: true,
   },
   {
     path: '/user',
@@ -46,6 +56,7 @@ const dashboardRoutes = [
     icon: 'nc-icon nc-circle-09',
     component: UserProfile,
     layout: '/admin',
+    isPrivate: true,
   },
   {
     path: '/table',
@@ -53,6 +64,7 @@ const dashboardRoutes = [
     icon: 'nc-icon nc-notes',
     component: TableList,
     layout: '/admin',
+    isPrivate: true,
   },
   {
     path: '/typography',
@@ -60,6 +72,7 @@ const dashboardRoutes = [
     icon: 'nc-icon nc-paper-2',
     component: Typography,
     layout: '/admin',
+    isPrivate: true,
   },
   {
     path: '/icons',
@@ -67,6 +80,7 @@ const dashboardRoutes = [
     icon: 'nc-icon nc-atom',
     component: Icons,
     layout: '/admin',
+    isPrivate: true,
   },
   {
     path: '/maps',
@@ -74,6 +88,7 @@ const dashboardRoutes = [
     icon: 'nc-icon nc-pin-3',
     component: Maps,
     layout: '/admin',
+    isPrivate: true,
   },
   {
     path: '/notifications',
@@ -81,6 +96,7 @@ const dashboardRoutes = [
     icon: 'nc-icon nc-bell-55',
     component: Notifications,
     layout: '/admin',
+    isPrivate: true,
   },
 ];
 

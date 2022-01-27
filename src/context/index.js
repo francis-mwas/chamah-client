@@ -3,6 +3,6 @@ import {
   AuthContextProvider,
   AuthDispatchContext,
   UserAuthContext,
-} from './context';
+} from './usersContext';
 
 export { AuthContextProvider, UserAuthContext, AuthDispatchContext };

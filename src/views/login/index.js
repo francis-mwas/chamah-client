@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-
-import { loginUser, useAuthState, useAuthDispatch } from '../../Context';
+import { useAuthState, useAuthDispatch } from '../../Hooks';
 import styles from './login.module.css';
 
 function Login(props) {
