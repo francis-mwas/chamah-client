@@ -19,6 +19,7 @@ import Dashboard from 'views/Dashboard.js';
 import Login from 'views/Login';
 import UserProfile from 'views/UserProfile.js';
 import TableList from 'views/TableList.js';
+import Contributions from 'views/Contributions';
 import Typography from 'views/Typography.js';
 import Icons from 'views/Icons.js';
 import Maps from 'views/Maps.js';
@@ -33,15 +34,7 @@ const dashboardRoutes = [
     component: Login,
     isPrivate: false,
   },
-  {
-    upgrade: true,
-    path: '/upgrade',
-    name: 'Upgrade to PRO',
-    icon: 'nc-icon nc-alien-33',
-    component: Upgrade,
-    layout: '/admin',
-    isPrivate: true,
-  },
+
   {
     path: '/dashboard',
     name: 'Dashboard',
@@ -67,29 +60,46 @@ const dashboardRoutes = [
     isPrivate: true,
   },
   {
-    path: '/typography',
-    name: 'Typography',
+    path: '/contributions',
+    name: 'Contributions',
     icon: 'nc-icon nc-paper-2',
-    component: Typography,
+    component: Contributions,
     layout: '/admin',
     isPrivate: true,
   },
-  {
-    path: '/icons',
-    name: 'Icons',
-    icon: 'nc-icon nc-atom',
-    component: Icons,
-    layout: '/admin',
-    isPrivate: true,
-  },
-  {
-    path: '/maps',
-    name: 'Maps',
-    icon: 'nc-icon nc-pin-3',
-    component: Maps,
-    layout: '/admin',
-    isPrivate: true,
-  },
+  // {
+  //   path: '/typography',
+  //   name: 'Typography',
+  //   icon: 'nc-icon nc-paper-2',
+  //   component: Typography,
+  //   layout: '/admin',
+  //   isPrivate: true,
+  // },
+  // {
+  //   path: '/icons',
+  //   name: 'Icons',
+  //   icon: 'nc-icon nc-atom',
+  //   component: Icons,
+  //   layout: '/admin',
+  //   isPrivate: true,
+  // },
+  // {
+  //   path: '/maps',
+  //   name: 'Maps',
+  //   icon: 'nc-icon nc-pin-3',
+  //   component: Maps,
+  //   layout: '/admin',
+  //   isPrivate: true,
+  // },
+  // {
+  //   upgrade: true,
+  //   path: '/upgrade',
+  //   name: 'Upgrade to PRO',
+  //   icon: 'nc-icon nc-alien-33',
+  //   component: Upgrade,
+  //   layout: '/admin',
+  //   isPrivate: true,
+  // },
   {
     path: '/notifications',
     name: 'Notifications',

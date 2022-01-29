@@ -16,16 +16,16 @@ import routes from '../src/routes';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      {/* <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-      <Redirect from="/" to="/admin/dashboard" /> */}
-      {routes.map((route) => (
+      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+      <Redirect from="/" to="/admin/dashboard" />
+      {/* {routes.map((route) => (
         <PrivateRoutes
           key={route.path}
           path={route.path}
           component={route.component}
           isPrivate={route.isPrivate}
         />
-      ))}
+      ))} */}
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
