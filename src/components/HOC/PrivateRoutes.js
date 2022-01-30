@@ -5,6 +5,7 @@ import { useAuthState } from 'Hooks';
 const PrivateRoutes = () => {
   const userDetails = useAuthState();
   const token = false;
+  
   return (
     <Route
       path={path}

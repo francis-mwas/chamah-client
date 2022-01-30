@@ -17,7 +17,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-      <Redirect from="/" to="/admin/dashboard" />
+      {/* <Redirect to="/login" /> */}
       {/* {routes.map((route) => (
         <PrivateRoutes
           key={route.path}
