@@ -1,5 +1,5 @@
 import Dashboard from 'views/Dashboard.js';
-import Login from 'views/Login';
+// import Login from 'views/Login';
 import UserLogin from 'views/UserLogin';
 import UserProfile from 'views/UserProfile.js';
 import TableList from 'views/TableList.js';
@@ -11,14 +11,13 @@ import Notifications from 'views/Notifications.js';
 // import Upgrade from 'views/Upgrade.js';
 
 const dashboardRoutes = [
-  {
-    path: '/login',
-    name: 'User Login',
-    layout: '/admin',
-    icon: 'nc-icon nc-circle-06',
-    component: Login,
-    isPrivate: false,
-  },
+  // {
+  //   path: '/login',
+  //   name: 'User Login',
+  //   icon: 'nc-icon nc-circle-06',
+  //   component: UserLogin,
+  //   isPrivate: false,
+  // },
 
   {
     path: '/dashboard',

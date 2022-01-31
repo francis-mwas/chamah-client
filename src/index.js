@@ -10,14 +10,16 @@ import './assets/css/demo.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import AdminLayout from 'layouts/Admin.js';
-import PrivateRoutes from '../src/components/HOC/PrivateRoutes';
+// import PrivateRoutes from '../src/components/HOC/PrivateRoutes';
 import routes from '../src/routes';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-      <Redirect to="/login" />
+      {/* <Route exact path="/" component={AdminLayout} /> */}
+      <Route path="/" render={(props) => <AdminLayout {...props} />} />
+      <Redirect from="/" to="/admin/dashboard" />
+      {/* <Redirect from="/" to="/login" /> */}
       {/* {routes.map((route) => (
         <PrivateRoutes
           key={route.path}
