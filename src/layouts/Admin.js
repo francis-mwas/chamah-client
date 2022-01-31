@@ -16,20 +16,20 @@ function Admin() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
-
+  console.log('The routing!!:', routes.adminLayout);
   const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === '/admin') {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            render={(props) => <prop.component {...props} />}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
+    return routes.adminLayout.map((prop, key) => {
+      // if (prop.layout === '/admin') {
+      return (
+        <Route
+          path={prop.layout + prop.path}
+          render={(props) => <prop.component {...props} />}
+          key={key}
+        />
+      );
+      // } else {
+      //   return null;
+      // }
     });
   };
   React.useEffect(() => {
