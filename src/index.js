@@ -15,12 +15,26 @@ import AdminLayout from 'layouts/Admin.js';
 // import PrivateRoutes from '../src/components/HOC/PrivateRoutes';
 import routes from '../src/routes';
 
+const userData = {
+  token: true,
+  isPrivate: true,
+};
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       {/* <Route exact path="/" component={AdminLayout} /> */}
-      <Route exact path="/login" component={Login} />
-      <Route path="/" render={(props) => <AdminLayout {...props} />} />
+      {/* <Route exact path="/login" component={Login} /> */}
+      {/* <Route path="/" render={(props) => <AdminLayout {...props} />} /> */}
+      <Route
+        render={(props) =>
+          userData.isPrivate && !Boolean(userData.token) ? (
+            <Redirect to="/login" />
+          ) : (
+            <AdminLayout {...props} />
+          )
+        }
+      />
       {/* <Redirect from="/" to="/admin/dashboard" /> */}
       {/* <Redirect from="/" to="/login" /> */}
       {/* {routes.map((route) => (
