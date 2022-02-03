@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { useAuthState } from 'Hooks';
+// import { useAuthState } from 'Hooks';
 
 const PrivateRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
-  const userDetails = useAuthState();
+  // const userDetails = useAuthState();
   const token = false;
 
   rreturn(
