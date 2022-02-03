@@ -36,7 +36,7 @@ function Sidebar({ color, image, routes }) {
           </a>
         </div>
         <Nav>
-          {routes.map((prop, key) => {
+          {routes.adminLayout.map((prop, key) => {
             if (!prop.redirect)
               return (
                 <li

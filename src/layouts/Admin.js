@@ -16,20 +16,20 @@ function Admin() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
-
+  console.log('The routing!!:', routes.adminLayout);
   const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === '/admin') {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            render={(props) => <prop.component {...props} />}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
+    return routes.adminLayout.map((prop, key) => {
+      // if (prop.layout === '/admin') {
+      return (
+        <Route
+          path={prop.layout + prop.path}
+          render={(props) => <prop.component {...props} />}
+          key={key}
+        />
+      );
+      // } else {
+      //   return null;
+      // }
     });
   };
   React.useEffect(() => {
@@ -45,35 +45,18 @@ function Admin() {
       element.parentNode.removeChild(element);
     }
   }, [location]);
-  const userDetails = {
-    token: false,
-  };
-  let NewWrapper = (props) => {
-    if (userDetails.token) {
-      return (NewWrapper = (
-        <div className="wrapper">
-          <Sidebar
-            color={color}
-            image={hasImage ? image : ''}
-            routes={routes}
-          />
-          <div className="main-panel" ref={mainPanel}>
-            <AdminNavbar />
-            <div className="content">
-              <Switch>{getRoutes(routes)}</Switch>
-            </div>
-            <Footer />
-          </div>
-        </div>
-      ));
-    } else {
-      <Redirect to={{ pathname: '/login' }} />;
-    }
-  };
-
   return (
     <>
-      <NewWrapper />
+      <div className="wrapper">
+        <Sidebar color={color} image={hasImage ? image : ''} routes={routes} />
+        <div className="main-panel" ref={mainPanel}>
+          <AdminNavbar />
+          <div className="content">
+            <Switch>{getRoutes(routes)}</Switch>
+          </div>
+          <Footer />
+        </div>
+      </div>
       <FixedPlugin
         hasImage={hasImage}
         setHasImage={() => setHasImage(!hasImage)}
