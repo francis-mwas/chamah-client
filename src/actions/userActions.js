@@ -6,7 +6,7 @@ import {
   USER_LOGOUT,
 } from '../constants/userConstants';
 
-const API_URL = 'localhost:3000/users';
+const API_URL = 'http://localhost:8000/api/v1/users';
 
 export const loginUser = async () => {
   const reqOptions = {
@@ -17,8 +17,10 @@ export const loginUser = async () => {
 
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    let res = await axios(`${API_URL}` / login, reqOptions);
+    let res = await axios(`${API_URL}/login`, reqOptions);
     let data = res.data;
+
+    console.log('The data is here:', data);
     if (data.userData) {
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
       localStorage.setItem('userData', JSON.stringify(data));
