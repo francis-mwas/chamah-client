@@ -1,4 +1,5 @@
 import React from 'react';
+import { AuthDispatchContext } from '../context';
 
 export const useAuthDispatch = () => {
   const context = React.useContext(AuthDispatchContext);
