@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthState, useAuthDispatch } from '../../hooks';
+import { loginUser } from 'actions/userActions';
 import styles from './login.module.css';
 
 function Login(props) {
@@ -25,7 +26,7 @@ function Login(props) {
     <div className={styles.container}>
       <div className={{ width: 200 }}>
         <h1>Login Page</h1>
-        {/* {errorMessage ? <p className={styles.error}>{errorMessage}</p> : null} */}
+        {errorMessage ? <p className={styles.error}>{errorMessage}</p> : null}
         <form>
           <div className={styles.loginForm}>
             <div className={styles.loginFormItem}>
@@ -47,7 +48,9 @@ function Login(props) {
               />
             </div>
           </div>
-          <button>login</button>
+          <button onClick={handleLogin} disabled={loading}>
+            login
+          </button>
         </form>
       </div>
     </div>

@@ -8,7 +8,7 @@ import {
 
 const API_URL = 'http://localhost:8000/api/v1/users';
 
-export const loginUser = async () => {
+export const loginUser = async ({ dispatch, loginPayload }) => {
   const reqOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

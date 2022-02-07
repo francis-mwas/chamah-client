@@ -12,6 +12,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Login from 'views/login';
 import AdminLayout from 'layouts/Admin.js';
+import { AuthContextProvider } from '../src/context';
 import PrivateRoutes from '../src/components/HOC/PrivateRoutes';
 import routes from '../src/routes';
 
@@ -21,11 +22,12 @@ const userData = {
 };
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={Login} />
-      <Route exact path="/admin/dashboard" component={AdminLayout} />
-      {/* <PrivateRoutes
+  <AuthContextProvider>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/admin/dashboard" component={AdminLayout} />
+        {/* <PrivateRoutes
         render={(props) =>
           userData.isPrivate && !Boolean(userData.token) ? (
             <Redirect to="/login" />
@@ -34,7 +36,9 @@ ReactDOM.render(
           )
         }
       /> */}
-    </Switch>
-  </BrowserRouter>,
+      </Switch>
+    </BrowserRouter>
+    ,
+  </AuthContextProvider>,
   document.getElementById('root')
 );
