@@ -6,19 +6,25 @@ import {
   USER_LOGOUT,
 } from '../constants/userConstants';
 
-let user = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser')).user
+let msgResponse = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData')).message
   : '';
-let token = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser')).auth_token
+let resStatus = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData')).status
+  : '';
+let token = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData')).data
   : '';
 
 export const initialState = {
-  user: '' || user,
+  message: '' || msgResponse,
   token: '' || token,
+  respStatus: '' || resStatus,
   loading: false,
   errorMessage: null,
 };
+
+console.log('The initial state: ', initialState);
 
 export const AuthReducer = (initialState, action) => {
   switch (action.type) {
@@ -30,14 +36,15 @@ export const AuthReducer = (initialState, action) => {
     case USER_LOGIN_SUCCESS:
       return {
         ...initialState,
-        user: action.payload.user,
-        token: action.payload.auth_token,
+        message: action.payload.message,
+        token: action.payload.token,
         loading: false,
       };
     case USER_LOGOUT:
       return {
         ...initialState,
-        user: '',
+        message: '',
+        status: '',
         token: '',
       };
 
