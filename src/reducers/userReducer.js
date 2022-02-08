@@ -1,4 +1,10 @@
 import React, { useState, useReducer } from 'react';
+import {
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
+  USER_LOGOUT,
+} from '../constants/userConstants';
 
 let user = localStorage.getItem('currentUser')
   ? JSON.parse(localStorage.getItem('currentUser')).user
@@ -16,26 +22,26 @@ export const initialState = {
 
 export const AuthReducer = (initialState, action) => {
   switch (action.type) {
-    case 'REQUEST_LOGIN':
+    case USER_LOGIN_REQUEST:
       return {
         ...initialState,
         loading: true,
       };
-    case 'LOGIN_SUCCESS':
+    case USER_LOGIN_SUCCESS:
       return {
         ...initialState,
         user: action.payload.user,
         token: action.payload.auth_token,
         loading: false,
       };
-    case 'LOGOUT':
+    case USER_LOGOUT:
       return {
         ...initialState,
         user: '',
         token: '',
       };
 
-    case 'LOGIN_ERROR':
+    case USER_LOGIN_FAIL:
       return {
         ...initialState,
         loading: false,
