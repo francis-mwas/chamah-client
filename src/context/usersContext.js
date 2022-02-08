@@ -1,10 +1,10 @@
 import React, { createContext, useReducer } from 'react';
 import { initialState, AuthReducer } from 'reducers/userReducer';
 
-export const UserAuthContext = createContext();
+export const AuthStateContext = createContext();
 export const AuthDispatchContext = createContext();
 
-export const AuthContextProvider = (props) => {
+export const AuthContextProvider = ({ children }) => {
   const [user, dispatch] = useReducer(AuthReducer, initialState);
 
   return (

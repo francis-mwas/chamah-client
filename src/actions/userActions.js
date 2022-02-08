@@ -6,25 +6,39 @@ import {
   USER_LOGOUT,
 } from '../constants/userConstants';
 
-const API_URL = 'localhost:3000/users';
+const API_URL = 'http://localhost:8000/api/v1/';
 
-export const loginUser = async () => {
-  const reqOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(loginPayload),
+export const loginUser = async (dispatch, loginPayload) => {
+  // const reqOptions = {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(loginPayload),
+  // };
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
+  const { email, password } = loginPayload;
 
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    let res = await axios(`${API_URL}` / login, reqOptions);
-    let data = res.data;
-    if (data.userData) {
-      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-      localStorage.setItem('userData', JSON.stringify(data));
-      return data;
-    }
+    // let res = await axios(`${API_URL}users/login`, reqOptions);
+    const { data } = await axios.post(
+      `${API_URL}users/login`,
+      { email, password },
+      config
+    );
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    localStorage.setItem('userData', JSON.stringify(data));
+    return data;
   } catch (error) {
-    dispatch({ type: USER_LOGIN_FAIL, error: error });
+    dispatch({
+      type: USER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };

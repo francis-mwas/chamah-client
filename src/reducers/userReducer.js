@@ -1,41 +1,54 @@
 import React, { useState, useReducer } from 'react';
+import {
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
+  USER_LOGOUT,
+} from '../constants/userConstants';
 
-let user = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser')).user
+let msgResponse = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData')).message
   : '';
-let token = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser')).auth_token
+let resStatus = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData')).status
+  : '';
+let token = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData')).data
   : '';
 
 export const initialState = {
-  user: '' || user,
+  message: '' || msgResponse,
   token: '' || token,
+  respStatus: '' || resStatus,
   loading: false,
   errorMessage: null,
 };
 
+console.log('The initial state: ', initialState);
+
 export const AuthReducer = (initialState, action) => {
   switch (action.type) {
-    case 'REQUEST_LOGIN':
+    case USER_LOGIN_REQUEST:
       return {
         ...initialState,
         loading: true,
       };
-    case 'LOGIN_SUCCESS':
+    case USER_LOGIN_SUCCESS:
       return {
         ...initialState,
-        user: action.payload.user,
-        token: action.payload.auth_token,
+        message: action.payload.message,
+        token: action.payload.token,
         loading: false,
       };
-    case 'LOGOUT':
+    case USER_LOGOUT:
       return {
         ...initialState,
-        user: '',
+        message: '',
+        status: '',
         token: '',
       };
 
-    case 'LOGIN_ERROR':
+    case USER_LOGIN_FAIL:
       return {
         ...initialState,
         loading: false,

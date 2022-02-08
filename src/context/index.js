@@ -1,8 +1,7 @@
-// import { loginUser, logout } from './actions';
 import {
   AuthContextProvider,
   AuthDispatchContext,
-  UserAuthContext,
+  AuthStateContext,
 } from './usersContext';
 
-export { AuthContextProvider, UserAuthContext, AuthDispatchContext };
+export { AuthContextProvider, AuthStateContext, AuthDispatchContext };
