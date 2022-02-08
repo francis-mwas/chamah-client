@@ -42,3 +42,8 @@ export const loginUser = async (dispatch, loginPayload) => {
     });
   }
 };
+
+export const logOut = () => {
+  localStorage.removeItem('userData');
+  dispatch({ type: USER_LOGOUT });
+};
