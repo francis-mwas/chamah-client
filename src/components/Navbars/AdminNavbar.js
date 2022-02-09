@@ -1,21 +1,30 @@
-import React, { Component } from "react";
-import { useLocation } from "react-router-dom";
-import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Navbar, Container, Nav, Dropdown, Button } from 'react-bootstrap';
+import { useAuthDispatch } from '../../hooks';
+import { logOut } from '../../actions/userActions';
 
-import routes from "routes.js";
+import routes from 'routes.js';
 
-function Header() {
+function Header({ props }) {
   const location = useLocation();
+  const dispatch = useAuthDispatch();
   const mobileSidebarToggle = (e) => {
     e.preventDefault();
-    document.documentElement.classList.toggle("nav-open");
-    var node = document.createElement("div");
-    node.id = "bodyClick";
+    document.documentElement.classList.toggle('nav-open');
+    var node = document.createElement('div');
+    node.id = 'bodyClick';
     node.onclick = function () {
       this.parentElement.removeChild(this);
-      document.documentElement.classList.toggle("nav-open");
+      document.documentElement.classList.toggle('nav-open');
     };
     document.body.appendChild(node);
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logOut(dispatch);
+    props.history.push('/');
   };
 
   const getBrandText = () => {
@@ -24,7 +33,7 @@ function Header() {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return 'Brand';
   };
   return (
     <Navbar bg="light" expand="lg">
@@ -176,11 +185,7 @@ function Header() {
               </Dropdown.Menu>
             </Dropdown>
             <Nav.Item>
-              <Nav.Link
-                className="m-0"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
+              <Nav.Link className="m-0" href="#pablo" onClick={handleLogout}>
                 <span className="no-icon">Log out</span>
               </Nav.Link>
             </Nav.Item>
