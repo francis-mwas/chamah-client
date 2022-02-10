@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { useLocation, Route, Switch, Redirect } from 'react-router-dom';
+import React from 'react';
+import { useLocation, Switch } from 'react-router-dom';
+import PrivateRoutes from '../components/HOC/PrivateRoutes';
 
 import AdminNavbar from 'components/Navbars/AdminNavbar';
 import Footer from 'components/Footer/Footer';
@@ -19,17 +20,17 @@ function Admin(props) {
   console.log('The routing!!:', routes.adminLayout);
   const getRoutes = (routes) => {
     return routes.adminLayout.map((prop, key) => {
-      // if (prop.layout === '/admin') {
-      return (
-        <Route
-          path={prop.layout + prop.path}
-          render={(props) => <prop.component {...props} />}
-          key={key}
-        />
-      );
-      // } else {
-      //   return null;
-      // }
+      if (prop.layout === '/admin') {
+        return (
+          <PrivateRoutes
+            path={prop.layout + prop.path}
+            render={(props) => <prop.component {...props} />}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
     });
   };
   React.useEffect(() => {
@@ -62,7 +63,6 @@ function Admin(props) {
         setHasImage={() => setHasImage(!hasImage)}
         color={color}
         setColor={(color) => setColor(color)}
-        image={image}
         setImage={(image) => setImage(image)}
       />
     </>

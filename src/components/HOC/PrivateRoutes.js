@@ -1,24 +1,15 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-// import { useAuthState } from 'Hooks';
+import { useAuthState } from 'hooks';
 
-const PrivateRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
-  // const userDetails = useAuthState();
-  const token = false;
+const PrivateRoutes = ({ ...rest }) => {
+  const userDetails = useAuthState();
 
-  rreturn(
-    <Route
-      path={path}
-      render={(props) =>
-        isPrivate && !Boolean(userDetails.token) ? (
-          <Redirect to={{ pathname: '/login' }} />
-        ) : (
-          <Component {...props} />
-        )
-      }
-      {...rest}
-    />
-  );
+  if (!userDetails || userDetails.token === '') {
+    return <Redirect to={{ pathname: '/' }} />;
+  }
+
+  // let user through if they're logged in
+  return <Route {...rest} />;
 };
-
 export default PrivateRoutes;

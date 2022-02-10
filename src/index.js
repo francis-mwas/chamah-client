@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,28 +14,16 @@ import Login from 'views/login';
 import AdminLayout from 'layouts/Admin.js';
 import { AuthContextProvider } from '../src/context';
 import PrivateRoutes from '../src/components/HOC/PrivateRoutes';
-import routes from '../src/routes';
-
-const userData = {
-  token: false,
-  isPrivate: true,
-};
 
 ReactDOM.render(
   <AuthContextProvider>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/admin/dashboard" component={AdminLayout} />
-        {/* <PrivateRoutes
-        render={(props) =>
-          userData.isPrivate && !Boolean(userData.token) ? (
-            <Redirect to="/login" />
-          ) : (
-            <AdminLayout {...props} />
-          )
-        }
-      /> */}
+        <PrivateRoutes
+          path="/admin"
+          render={(props) => <AdminLayout {...props} />}
+        />
       </Switch>
     </BrowserRouter>
     ,
