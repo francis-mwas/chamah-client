@@ -11,14 +11,19 @@ function Login(props) {
   const { loading, errorMessage } = useAuthState();
 
   console.log('The dispatched error: ', errorMessage);
+
   const handleLogin = async (e) => {
+    console.log('Inside handle login');
     e.preventDefault();
 
     try {
       let response = await loginUser(dispatch, { email, password });
-      console.log('The response: ', response.status);
-      if (!response.status === 'success') return;
-      props.history.push('/admin/dashboard');
+      console.log('The response: ', response);
+      if (response) {
+        props.history.push('/admin/dashboard');
+      } else {
+        console.log('The error occurred');
+      }
     } catch (error) {
       console.log(error);
     }
