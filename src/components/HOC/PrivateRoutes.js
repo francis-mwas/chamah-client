@@ -4,7 +4,7 @@ import { useAuthState } from 'hooks';
 
 const PrivateRoutes = ({ ...rest }) => {
   const userDetails = useAuthState();
-
+  console.log('The user details in private route: ', userDetails.token);
   if (!userDetails || userDetails.token === '') {
     return <Redirect to={{ pathname: '/' }} />;
   }

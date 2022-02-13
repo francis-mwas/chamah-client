@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 // react-bootstrap components
 import {
   Badge,
@@ -11,9 +11,19 @@ import {
   Container,
   Row,
   Col,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
 function User() {
+  const user = {
+    isLoggedIn: false,
+  };
+  console.log('Is userLoggedin false: ', user.isLoggedIn);
+  useEffect(() => {
+    if (user.isLoggedIn === false) {
+      <Redirect to={{ pathname: '/' }} />;
+    }
+    console.log('Inside use effects to check user: ');
+  }, []);
   return (
     <>
       <Container fluid>
@@ -157,7 +167,7 @@ function User() {
                 <img
                   alt="..."
                   src={
-                    require("assets/img/photo-1431578500526-4d9613015464.jpeg")
+                    require('assets/img/photo-1431578500526-4d9613015464.jpeg')
                       .default
                   }
                 ></img>
@@ -168,7 +178,7 @@ function User() {
                     <img
                       alt="..."
                       className="avatar border-gray"
-                      src={require("assets/img/faces/face-3.jpg").default}
+                      src={require('assets/img/faces/face-3.jpg').default}
                     ></img>
                     <h5 className="title">Mike Andrew</h5>
                   </a>
