@@ -7,15 +7,18 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_LIST_REQUEST,
+  USER_LIST_SUCCESS,
+  USER_LIST_FAIL,
 } from '../constants/userConstants';
 
 const API_URL = 'http://localhost:8000/api/v1/';
 
 const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
 
 export const loginUser = async (dispatch, loginPayload) => {
   const { email, password } = loginPayload;
@@ -44,30 +47,20 @@ export const loginUser = async (dispatch, loginPayload) => {
     });
   }
 };
-export const listProducts = () => async (dispatch) => {
+
+export const getAllUsers = async (dispatch) => {
   try {
-    dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get('/api/products');
-    dispatch({
-      type: PRODUCT_LIST_SUCCESS,
-      payload: data,
-    });
+    dispatch({ type: USER_LIST_REQUEST });
+    const { data } = await axios.post(`${API_URL}users/`);
+    dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: PRODUCT_LIST_FAIL,
+      USER_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
     });
-  }
-};
-
-export const getAllUsers = (dispatch) => {
-  try {
-    
-  } catch (error) {
-    
   }
 };
 

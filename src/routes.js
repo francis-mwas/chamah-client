@@ -1,7 +1,7 @@
 import Dashboard from 'views/Dashboard.js';
 import Login from 'views/login';
 import UserProfile from 'views/UserProfile.js';
-import TableList from 'views/TableList.js';
+import ListUsers from 'views/ListUsers';
 import Contributions from 'views/Contributions';
 import Typography from 'views/Typography.js';
 import Icons from 'views/Icons.js';
@@ -33,10 +33,10 @@ const appRoutes = {
       isPrivate: true,
     },
     {
-      path: '/table',
+      path: '/members',
       name: 'Members',
       icon: 'nc-icon nc-notes',
-      component: TableList,
+      component: ListUsers,
       layout: '/admin',
       isPrivate: true,
     },
@@ -91,6 +91,5 @@ const appRoutes = {
     },
   ],
 };
-
 
 export default appRoutes;
