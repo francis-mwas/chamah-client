@@ -1,4 +1,7 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from '../commons/setAuthToken';
+
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -9,11 +12,6 @@ import {
 const API_URL = 'http://localhost:8000/api/v1/';
 
 export const loginUser = async (dispatch, loginPayload) => {
-  // const reqOptions = {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(loginPayload),
-  // };
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -29,8 +27,11 @@ export const loginUser = async (dispatch, loginPayload) => {
       { email, password },
       config
     );
+
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem('userData', JSON.stringify(data));
+    let decoded = jwt_decode(data.data);
+    console.log('The data i received from the server: ', decoded);
     return data;
   } catch (error) {
     dispatch({
