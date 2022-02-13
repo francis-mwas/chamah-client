@@ -11,12 +11,13 @@ import {
 
 const API_URL = 'http://localhost:8000/api/v1/';
 
-export const loginUser = async (dispatch, loginPayload) => {
-  const config = {
+const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
+
+export const loginUser = async (dispatch, loginPayload) => {
   const { email, password } = loginPayload;
 
   try {
@@ -41,6 +42,32 @@ export const loginUser = async (dispatch, loginPayload) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+};
+export const listProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_LIST_REQUEST });
+    const { data } = await axios.get('/api/products');
+    dispatch({
+      type: PRODUCT_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getAllUsers = (dispatch) => {
+  try {
+    
+  } catch (error) {
+    
   }
 };
 
