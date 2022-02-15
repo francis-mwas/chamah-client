@@ -4,6 +4,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_LIST_SUCCESS,
+  USER_LIST_REQUEST,
+  USER_LIST_FAIL,
 } from '../constants/userConstants';
 
 let msgResponse = localStorage.getItem('userData')
@@ -25,6 +28,28 @@ export const initialState = {
 };
 
 console.log('The initial state: ', initialState);
+
+export const UserListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case USER_LIST_REQUEST:
+      return {
+        loading: true,
+        users: [],
+      };
+    case USER_LIST_SUCCESS:
+      return {
+        laoding: false,
+        users: action.payload,
+      };
+    case USER_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 export const AuthReducer = (initialState, action) => {
   switch (action.type) {

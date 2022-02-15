@@ -15,12 +15,10 @@ import {
 } from 'react-bootstrap';
 
 function ListUsers() {
-
-useEffect(()=>{
-    
-}, []);
-
-
+const dispatch = useAuthDispatch();
+useEffect(() => {
+  getAllUsers(dispatch);
+}, [dispatch]);
 
   return (
     <>
