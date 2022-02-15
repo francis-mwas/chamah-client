@@ -52,7 +52,9 @@ export const getAllUsers = async (dispatch) => {
   try {
     dispatch({ type: USER_LIST_REQUEST });
     const { data } = await axios.post(`${API_URL}users/`);
-    dispatch({ type: USER_LIST_SUCCESS, payload: data });
+    if (data) {
+      dispatch({ type: USER_LIST_SUCCESS, payload: data });
+    }
   } catch (error) {
     dispatch({
       USER_LIST_FAIL,

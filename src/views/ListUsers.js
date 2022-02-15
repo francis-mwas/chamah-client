@@ -1,6 +1,6 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { useAuthDispatch, useUserState } from 'hooks';
 import { getAllUsers } from 'actions/userActions';
-import { useAuthDispatch, useAuthState } from 'hooks';
 
 import {
   Badge,
@@ -15,10 +15,12 @@ import {
 } from 'react-bootstrap';
 
 function ListUsers() {
-const dispatch = useAuthDispatch();
-useEffect(() => {
-  getAllUsers(dispatch);
-}, [dispatch]);
+  const dispatch = useAuthDispatch();
+  const usersList = useUserState();
+  console.log('The users are here: ', usersList);
+  useEffect(() => {
+    getAllUsers(dispatch);
+  }, [dispatch]);
 
   return (
     <>

@@ -27,29 +27,11 @@ export const initialState = {
   errorMessage: null,
 };
 
-console.log('The initial state: ', initialState);
-
-export const UserListReducer = (state = { users: [] }, action) => {
-  switch (action.type) {
-    case USER_LIST_REQUEST:
-      return {
-        loading: true,
-        users: [],
-      };
-    case USER_LIST_SUCCESS:
-      return {
-        laoding: false,
-        users: action.payload,
-      };
-    case USER_LIST_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
+export const usersInitialState = {
+  users: [],
 };
+
+console.log('The initial state: ', initialState);
 
 export const AuthReducer = (initialState, action) => {
   switch (action.type) {
@@ -82,5 +64,30 @@ export const AuthReducer = (initialState, action) => {
 
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
+  }
+};
+
+export const UserListReducer = (
+  state = { users: usersInitialState.users },
+  action
+) => {
+  switch (action.type) {
+    case USER_LIST_REQUEST:
+      return {
+        loading: true,
+        users: [],
+      };
+    case USER_LIST_SUCCESS:
+      return {
+        laoding: false,
+        users: action.payload,
+      };
+    case USER_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
   }
 };
