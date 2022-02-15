@@ -31,9 +31,9 @@ export const loginUser = async (dispatch, loginPayload) => {
       { email, password },
       config
     );
-
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem('userData', JSON.stringify(data));
+    setAuthToken(data.data);
     let decoded = jwt_decode(data.data);
     console.log('The data i received from the server: ', decoded);
     return data;
@@ -46,6 +46,13 @@ export const loginUser = async (dispatch, loginPayload) => {
           : error.message,
     });
   }
+};
+// Set logged in user
+export const setCurrentUser = (decoded) => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: decoded,
+  };
 };
 
 export const getAllUsers = async (dispatch) => {

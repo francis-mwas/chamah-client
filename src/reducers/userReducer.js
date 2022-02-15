@@ -19,37 +19,45 @@ let token = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData')).data
   : '';
 
-export const initialState = {
-  message: '' || msgResponse,
-  token: '' || token,
-  respStatus: '' || resStatus,
+// export const initialState = {
+//   message: '' || msgResponse,
+//   token: '' || token,
+//   respStatus: '' || resStatus,
+//   loading: false,
+//   errorMessage: null,
+// };
+
+export const INITIAL_STATE = {
+  authenticated: false,
+  errorMessage: {},
   loading: false,
-  errorMessage: null,
+  user: {},
 };
 
 export const usersInitialState = {
   users: [],
 };
 
-console.log('The initial state: ', initialState);
+console.log('The initial state: ', INITIAL_STATE);
 
-export const AuthReducer = (initialState, action) => {
+export const AuthReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
       return {
-        ...initialState,
+        ...state,
         loading: true,
       };
     case USER_LOGIN_SUCCESS:
       return {
-        ...initialState,
-        message: action.payload.message,
-        token: action.payload.token,
+        ...state,
+        authenticated: true,
+        user: action.payload,
+        errorMessage: {},
         loading: false,
       };
     case USER_LOGOUT:
       return {
-        ...initialState,
+        ...state,
         message: '',
         status: '',
         token: '',
@@ -57,13 +65,12 @@ export const AuthReducer = (initialState, action) => {
 
     case USER_LOGIN_FAIL:
       return {
-        ...initialState,
+        ...state,
         loading: false,
         errorMessage: action.error,
       };
-
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      return state;
   }
 };
 
