@@ -4,12 +4,13 @@ import setAuthToken from '../commons/setAuthToken';
 
 import {
   USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
+  USER_LOGIN_SUCCESS,
+  SET_CURRENT_USER,
 } from '../constants/userConstants';
 
 const API_URL = 'http://localhost:8000/api/v1/';
@@ -31,11 +32,11 @@ export const loginUser = async (dispatch, loginPayload) => {
       { email, password },
       config
     );
-    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-    localStorage.setItem('userData', JSON.stringify(data));
+    localStorage.setItem('AUTH_TOKEN', JSON.stringify(data.data));
     setAuthToken(data.data);
     let decoded = jwt_decode(data.data);
     console.log('The data i received from the server: ', decoded);
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     return data;
   } catch (error) {
     dispatch({
@@ -75,5 +76,5 @@ export const getAllUsers = async (dispatch) => {
 
 export const logOut = (dispatch) => {
   dispatch({ type: USER_LOGOUT });
-  localStorage.removeItem('userData');
+  localStorage.removeItem('AUTH_TOKEN');
 };

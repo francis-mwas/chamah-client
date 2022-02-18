@@ -10,7 +10,7 @@ function Login(props) {
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
 
-  console.log('The dispatched error: ', errorMessage);
+  // console.log('The dispatched error: ', errorMessage);
 
   const handleLogin = async (e) => {
     console.log('Inside handle login');
@@ -33,7 +33,7 @@ function Login(props) {
     <div className={styles.container}>
       <div className={{ width: 200 }}>
         <h1>Login Page</h1>
-        {errorMessage ? <p className={styles.error}>{errorMessage}</p> : null}
+        {/* {errorMessage ? <p className={styles.error}>{errorMessage}</p> : null} */}
         <form>
           <div className={styles.loginForm}>
             <div className={styles.loginFormItem}>

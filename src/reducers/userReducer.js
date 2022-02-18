@@ -1,11 +1,12 @@
 import React, { useState, useReducer } from 'react';
 import {
   USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
+  SET_CURRENT_USER,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
   USER_LIST_SUCCESS,
   USER_LIST_REQUEST,
+  USER_LOGIN_SUCCESS,
   USER_LIST_FAIL,
 } from '../constants/userConstants';
 
@@ -37,8 +38,6 @@ export const INITIAL_STATE = {
 export const usersInitialState = {
   users: [],
 };
-
-console.log('The initial state: ', INITIAL_STATE);
 
 export const AuthReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
