@@ -4,7 +4,11 @@ import {
   AuthStateContext,
 } from './authContext';
 
-import { UserStateContext, UserContextProvider } from './userContext';
+import {
+  UserStateContext,
+  UserContextProvider,
+  UserStateDispatch,
+} from './userContext';
 
 export {
   AuthContextProvider,
@@ -12,4 +16,5 @@ export {
   AuthDispatchContext,
   UserStateContext,
   UserContextProvider,
+  UserStateDispatch,
 };

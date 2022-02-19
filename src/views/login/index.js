@@ -18,7 +18,6 @@ function Login(props) {
     e.preventDefault();
 
     let response = await loginUser(dispatch, { email, password });
-    console.log('The response: ', response);
     if (response.data) {
       props.history.push('/admin/dashboard');
     } else {

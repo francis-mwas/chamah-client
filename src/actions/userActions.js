@@ -1,5 +1,4 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 import setAuthToken from '../commons/setAuthToken';
 
 import {
@@ -10,7 +9,6 @@ import {
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
   USER_LOGIN_SUCCESS,
-  SET_CURRENT_USER,
 } from '../constants/userConstants';
 
 const API_URL = 'http://localhost:8000/api/v1/';
@@ -33,10 +31,9 @@ export const loginUser = async (dispatch, loginPayload) => {
       config
     );
     setAuthToken(data.data);
-    let decoded = jwt_decode(data.data);
     // console.log('The data i received from the server: ', decoded);
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-    localStorage.setItem('AUTH_TOKEN', JSON.stringify(data.data));
+    localStorage.setItem('AUTH_TOKEN', data.data);
     return data;
   } catch (error) {
     dispatch({
@@ -48,21 +45,12 @@ export const loginUser = async (dispatch, loginPayload) => {
     });
   }
 };
-// Set logged in user
-export const setCurrentUser = (decoded) => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded,
-  };
-};
-
 export const getAllUsers = async (dispatch) => {
   try {
     dispatch({ type: USER_LIST_REQUEST });
-    const { data } = await axios.post(`${API_URL}users/`);
-    if (data) {
-      dispatch({ type: USER_LIST_SUCCESS, payload: data });
-    }
+    const { data } = await axios.get(`${API_URL}users/`);
+    console.log('Serrver response: ', data);
+    dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       USER_LIST_FAIL,

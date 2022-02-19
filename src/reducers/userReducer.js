@@ -20,14 +20,6 @@ let token = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData')).data
   : '';
 
-// export const initialState = {
-//   message: '' || msgResponse,
-//   token: '' || token,
-//   respStatus: '' || resStatus,
-//   loading: false,
-//   errorMessage: null,
-// };
-
 export const INITIAL_STATE = {
   authenticated: false,
   errorMessage: '',
@@ -36,7 +28,30 @@ export const INITIAL_STATE = {
 };
 
 export const usersInitialState = {
-  users: [],
+  members: [],
+};
+
+export const UserListReducer = (state = usersInitialState, action) => {
+  switch (action.type) {
+    case USER_LIST_REQUEST:
+      return {
+        loading: true,
+        members: [],
+      };
+    case USER_LIST_SUCCESS:
+      return {
+        ...state,
+        laoding: false,
+        members: action.payload,
+      };
+    case USER_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
 };
 
 export const AuthReducer = (state = INITIAL_STATE, action) => {
@@ -67,31 +82,6 @@ export const AuthReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         errorMessage: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export const UserListReducer = (
-  state = { users: usersInitialState.users },
-  action
-) => {
-  switch (action.type) {
-    case USER_LIST_REQUEST:
-      return {
-        loading: true,
-        users: [],
-      };
-    case USER_LIST_SUCCESS:
-      return {
-        laoding: false,
-        users: action.payload,
-      };
-    case USER_LIST_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
       };
     default:
       return state;
