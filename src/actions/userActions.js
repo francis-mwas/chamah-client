@@ -32,11 +32,11 @@ export const loginUser = async (dispatch, loginPayload) => {
       { email, password },
       config
     );
-    localStorage.setItem('AUTH_TOKEN', JSON.stringify(data.data));
     setAuthToken(data.data);
     let decoded = jwt_decode(data.data);
-    console.log('The data i received from the server: ', decoded);
+    // console.log('The data i received from the server: ', decoded);
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    localStorage.setItem('AUTH_TOKEN', JSON.stringify(data.data));
     return data;
   } catch (error) {
     dispatch({

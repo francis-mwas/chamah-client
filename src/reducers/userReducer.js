@@ -30,7 +30,7 @@ let token = localStorage.getItem('userData')
 
 export const INITIAL_STATE = {
   authenticated: false,
-  errorMessage: {},
+  errorMessage: '',
   loading: false,
   user: {},
 };
@@ -51,7 +51,7 @@ export const AuthReducer = (state = INITIAL_STATE, action) => {
         ...state,
         authenticated: true,
         user: action.payload,
-        errorMessage: {},
+        errorMessage: '',
         loading: false,
       };
     case USER_LOGOUT:
@@ -66,7 +66,7 @@ export const AuthReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        errorMessage: action.error,
+        errorMessage: action.payload,
       };
     default:
       return state;
