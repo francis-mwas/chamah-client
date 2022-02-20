@@ -10,18 +10,10 @@ import {
   USER_LIST_FAIL,
 } from '../constants/userConstants';
 
-let msgResponse = localStorage.getItem('userData')
-  ? JSON.parse(localStorage.getItem('userData')).message
-  : '';
-let resStatus = localStorage.getItem('userData')
-  ? JSON.parse(localStorage.getItem('userData')).status
-  : '';
-let token = localStorage.getItem('userData')
-  ? JSON.parse(localStorage.getItem('userData')).data
-  : '';
+let token = localStorage.getItem('AUTH_TOKEN') ? true : false;
 
 export const INITIAL_STATE = {
-  authenticated: false,
+  authenticated: token,
   errorMessage: '',
   loading: false,
   user: {},
@@ -40,7 +32,6 @@ export const UserListReducer = (state = usersInitialState, action) => {
       };
     case USER_LIST_SUCCESS:
       return {
-        ...state,
         laoding: false,
         members: action.payload,
       };
@@ -58,12 +49,10 @@ export const AuthReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
       return {
-        ...state,
         loading: true,
       };
     case USER_LOGIN_SUCCESS:
       return {
-        ...state,
         authenticated: true,
         user: action.payload,
         errorMessage: '',
@@ -71,7 +60,6 @@ export const AuthReducer = (state = INITIAL_STATE, action) => {
       };
     case USER_LOGOUT:
       return {
-        ...state,
         message: '',
         status: '',
         token: '',
@@ -79,7 +67,6 @@ export const AuthReducer = (state = INITIAL_STATE, action) => {
 
     case USER_LOGIN_FAIL:
       return {
-        ...state,
         loading: false,
         errorMessage: action.payload,
       };

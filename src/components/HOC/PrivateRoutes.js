@@ -10,8 +10,10 @@ const PrivateRoutes = ({ ...rest }) => {
   const userDetails = useAuthState();
   const dispatch = useAuthDispatch();
   const history = useHistory();
-  console.log('User details: ', userDetails.authenticated);
-  if (!userDetails || !userDetails.authenticated) {
+  const { authenticated } = userDetails;
+  console.log('Is user authenticated?: ', userDetails.authenticated);
+  console.log('Authentication details: ', userDetails);
+  if (!authenticated) {
     return <Redirect to={{ pathname: '/' }} />;
   }
   const token = localStorage.getItem('AUTH_TOKEN');
@@ -22,6 +24,7 @@ const PrivateRoutes = ({ ...rest }) => {
     setAuthToken(token);
     // Decode token and get user info and exp
     const decoded = jwt_decode(token);
+    console.log('The decoded token: ', decoded);
     // Set user and isAuthenticated
     // store.dispatch(setCurrentUser(decoded));
     // Check for expired token

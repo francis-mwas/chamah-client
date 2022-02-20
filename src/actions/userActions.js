@@ -65,4 +65,5 @@ export const getAllUsers = async (dispatch) => {
 export const logOut = (dispatch) => {
   dispatch({ type: USER_LOGOUT });
   localStorage.removeItem('AUTH_TOKEN');
+  setAuthToken();
 };
