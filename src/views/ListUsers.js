@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link, to } from 'react-router-dom';
 import { useUserState, useUserDispatch } from 'hooks';
 import { getAllUsers } from 'actions/userActions';
 import Loader from 'components/Loader/Loader';
@@ -64,8 +65,12 @@ function ListUsers() {
                             <td>{member.role}</td>
                             <td>Ksh 89666</td>
                             <td>
-                              <Button variant="info">View User</Button>{' '}
-                              <Button variant="danger">Delete</Button>
+                              <Button variant="info">
+                                <Link to="/admin/user">View User</Link>
+                              </Button>{' '}
+                              <Button variant="danger">
+                                <Link to="/">Delete</Link>
+                              </Button>
                             </td>
                           </tr>
                         ))
