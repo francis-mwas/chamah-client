@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthState, useAuthDispatch } from '../../hooks';
 import { loginUser } from 'actions/userActions';
+import Loader from '../../components/Loader/Loader';
 import styles from './login.module.css';
 
 function Login(props) {
@@ -14,7 +15,6 @@ function Login(props) {
   console.log('The errorMessage am looking for: ', errorMessage);
 
   const handleLogin = async (e) => {
-    console.log('Inside handle login');
     e.preventDefault();
 
     let response = await loginUser(dispatch, { email, password });
@@ -30,6 +30,7 @@ function Login(props) {
       <div className={{ width: 200 }}>
         <h1>Login Page</h1>
         {errorMessage ? <p className={styles.error}>{errorMessage}</p> : null}
+        {loading && <Loader />}
         <form>
           <div className={styles.loginForm}>
             <div className={styles.loginFormItem}>
