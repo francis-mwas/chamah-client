@@ -2,6 +2,19 @@ import {
   AuthContextProvider,
   AuthDispatchContext,
   AuthStateContext,
-} from './usersContext';
+} from './authContext';
 
-export { AuthContextProvider, AuthStateContext, AuthDispatchContext };
+import {
+  UserStateContext,
+  UserContextProvider,
+  UserStateDispatch,
+} from './userContext';
+
+export {
+  AuthContextProvider,
+  AuthStateContext,
+  AuthDispatchContext,
+  UserStateContext,
+  UserContextProvider,
+  UserStateDispatch,
+};
