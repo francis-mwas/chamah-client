@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { useUserState, useUserDispatch } from 'hooks';
+import { getUserDetails } from 'actions/userActions';
+import Loader from 'components/Loader/Loader';
 // react-bootstrap components
 import {
   Badge,
@@ -13,16 +16,14 @@ import {
   Col,
 } from 'react-bootstrap';
 
-function User() {
-  const user = {
-    isLoggedIn: false,
-  };
-  console.log('Is userLoggedin false: ', user.isLoggedIn);
+function User(props) {
+  const dispatch = useUserDispatch();
+  const userDetails = useUserState();
+  console.log('Do we have data really?: ', userDetails.userDetails);
+  let { id } = useParams();
+  console.log('The props in this component: ', id);
   useEffect(() => {
-    if (user.isLoggedIn === false) {
-      <Redirect to={{ pathname: '/' }} />;
-    }
-    console.log('Inside use effects to check user: ');
+    getUserDetails(dispatch.userDetailsDispatch);
   }, []);
   return (
     <>

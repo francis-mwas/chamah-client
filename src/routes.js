@@ -3,6 +3,7 @@ import Login from 'views/login';
 import UserProfile from 'views/UserProfile.js';
 // import TableList from 'views/ListUsers';
 import ListUsers from 'views/ListUsers';
+import UserLogin from 'views/UserLogin';
 import Contributions from 'views/Contributions';
 import Typography from 'views/Typography.js';
 import Icons from 'views/Icons.js';
@@ -38,6 +39,14 @@ const appRoutes = {
       name: 'Members',
       icon: 'nc-icon nc-notes',
       component: ListUsers,
+      layout: '/admin',
+      isPrivate: true,
+    },
+    {
+      path: '/user-login',
+      name: 'login',
+      icon: 'nc-icon nc-notes',
+      component: UserLogin,
       layout: '/admin',
       isPrivate: true,
     },

@@ -47,7 +47,7 @@ export const UserListReducer = (state = usersInitialState, action) => {
   }
 };
 
-export const listUserDetail = (state = {}, action) => {
+export const listUserDetailReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_DETAIL_REQUEST:
       return {

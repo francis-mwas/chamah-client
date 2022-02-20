@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, to } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useUserState, useUserDispatch } from 'hooks';
 import { getAllUsers } from 'actions/userActions';
 import Loader from 'components/Loader/Loader';
@@ -15,17 +15,19 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
+import { logOut } from 'actions/userActions';
 
 function ListUsers() {
   const dispatch = useUserDispatch();
   const usersList = useUserState();
-  const { loading, members } = usersList;
+  const { members } = usersList;
+  const { loading } = members;
 
   let count = 1;
 
   useEffect(() => {
-    getAllUsers(dispatch);
-  }, [dispatch]);
+    getAllUsers(dispatch.dispatch);
+  }, [dispatch.dispatch]);
 
   return (
     <>
@@ -55,8 +57,8 @@ function ListUsers() {
                   </thead>
                   <tbody>
                     {/* render a list of all members here  */}
-                    {members.data
-                      ? members.data.map((member, index) => (
+                    {members.members.data
+                      ? members.members.data.map((member, index) => (
                           <tr key={index}>
                             <td>{count++}</td>
                             <td>{member.firstName}</td>
@@ -66,8 +68,11 @@ function ListUsers() {
                             <td>Ksh 89666</td>
                             <td>
                               <Button variant="info">
-                                <Link to="/admin/user">View User</Link>
-                              </Button>{' '}
+                                <Link to={`/admin/user/${member.id}`}>
+                                  View User
+                                </Link>
+                              </Button>
+                              {' | '}
                               <Button variant="danger">
                                 <Link to="/">Delete</Link>
                               </Button>

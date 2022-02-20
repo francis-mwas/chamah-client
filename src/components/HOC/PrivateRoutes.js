@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, useHistory, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import cleanToken from 'helpers/cleanBearerToken';
 import setAuthToken from 'commons/setAuthToken';
 import { useAuthState, useAuthDispatch } from 'hooks';
 import { logOut } from '../../actions/userActions';

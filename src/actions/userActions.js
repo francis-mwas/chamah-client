@@ -50,9 +50,10 @@ export const loginUser = async (dispatch, loginPayload) => {
 };
 export const getUserDetails = async (dispatch, payload) => {
   try {
-    const { userId } = payload;
+    const { id } = payload;
     dispatch({ type: USER_DETAIL_REQUEST });
-    const { data } = await axios.get(`${API_URL}users/${userId}`);
+    const { data } = await axios.get(`${API_URL}users/${id}`);
+    console.log('The data from server user details: ', data);
     if (data) {
       dispatch({ type: USER_DETAIL_SUCCESS, payload: data });
     }
