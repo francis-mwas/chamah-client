@@ -12,17 +12,12 @@ function Login(props) {
   const userDetails = useAuthState();
   const { loading, errorMessage } = userDetails;
 
-  console.log('The errorMessage am looking for: ', errorMessage);
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
     let response = await loginUser(dispatch, { email, password });
-    if (response.data) {
-      props.history.push('/admin/dashboard');
-    } else {
-      console.log('The error occurred');
-    }
+    if (!response) return;
+    props.history.push('/admin/dashboard');
   };
 
   return (
