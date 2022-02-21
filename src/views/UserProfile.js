@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { useUserState, useUserDispatch } from 'hooks';
+import { getUserDetails } from 'actions/userActions';
+import Loader from 'components/Loader/Loader';
 // react-bootstrap components
 import {
   Badge,
@@ -14,127 +17,107 @@ import {
 } from 'react-bootstrap';
 
 function User() {
-  const user = {
-    isLoggedIn: false,
-  };
-  console.log('Is userLoggedin false: ', user.isLoggedIn);
+  const dispatch = useUserDispatch();
+  const userData = useUserState();
+  const history = useHistory();
+  const { userDetails } = userData;
+  const { user } = userDetails;
+  let getId = history.location.pathname;
+  let newArr = getId.split('/');
+  let id = parseInt(newArr[newArr.length - 1]);
+
   useEffect(() => {
-    if (user.isLoggedIn === false) {
-      <Redirect to={{ pathname: '/' }} />;
-    }
-    console.log('Inside use effects to check user: ');
+    getUserDetails(dispatch.userDetailsDispatch, id);
   }, []);
+
   return (
     <>
       <Container fluid>
         <Row>
           <Col md="8">
-            <Card>
-              <Card.Header>
-                <Card.Title as="h4">Edit Profile</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <Form>
-                  <Row>
-                    <Col className="pr-1" md="5">
-                      <Form.Group>
-                        <label>Company (disabled)</label>
-                        <Form.Control
-                          defaultValue="Creative Code Inc."
-                          disabled
-                          placeholder="Company"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="px-1" md="3">
-                      <Form.Group>
-                        <label>Username</label>
-                        <Form.Control
-                          defaultValue="michael23"
-                          placeholder="Username"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <Form.Group>
-                        <label htmlFor="exampleInputEmail1">
-                          Email address
-                        </label>
-                        <Form.Control
-                          placeholder="Email"
-                          type="email"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="pr-1" md="6">
-                      <Form.Group>
-                        <label>First Name</label>
-                        <Form.Control
-                          defaultValue="Mike"
-                          placeholder="Company"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <Form.Group>
-                        <label>Last Name</label>
-                        <Form.Control
-                          defaultValue="Andrew"
-                          placeholder="Last Name"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="12">
-                      <Form.Group>
-                        <label>Address</label>
-                        <Form.Control
-                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                          placeholder="Home Address"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="pr-1" md="4">
-                      <Form.Group>
-                        <label>City</label>
-                        <Form.Control
-                          defaultValue="Mike"
-                          placeholder="City"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="px-1" md="4">
-                      <Form.Group>
-                        <label>Country</label>
-                        <Form.Control
-                          defaultValue="Andrew"
-                          placeholder="Country"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <Form.Group>
-                        <label>Postal Code</label>
-                        <Form.Control
-                          placeholder="ZIP Code"
-                          type="number"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
+            {user ? (
+              <Card>
+                <Card.Header>
+                  <Card.Title as="h4">Edit Profile</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <Form>
+                    <Row>
+                      <Col className="pr-1" md="5">
+                        <Form.Group>
+                          <label>User Role</label>
+                          <Form.Control
+                            defaultValue="Creative Code Inc."
+                            disabled
+                            placeholder="Company"
+                            type="text"
+                            value={user.role}
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                      <Col className="px-1" md="3">
+                        <Form.Group>
+                          <label>Username</label>
+                          <Form.Control
+                            defaultValue={user.email}
+                            placeholder="Username"
+                            type="text"
+                            value={user.email}
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                      <Col className="pl-1" md="4">
+                        <Form.Group>
+                          <label htmlFor="exampleInputEmail1">
+                            Email address
+                          </label>
+                          <Form.Control
+                            placeholder="Email"
+                            type="email"
+                            value={user.email}
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col className="pr-1" md="6">
+                        <Form.Group>
+                          <label>First Name</label>
+                          <Form.Control
+                            defaultValue="Mike"
+                            placeholder="Company"
+                            type="text"
+                            value={user.firstName}
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                      <Col className="pl-1" md="6">
+                        <Form.Group>
+                          <label>Last Name</label>
+                          <Form.Control
+                            defaultValue="Andrew"
+                            placeholder="Last Name"
+                            type="text"
+                            value={user.lastName}
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <Form.Group>
+                          <label>Date Created</label>
+                          <Form.Control
+                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                            placeholder="Home Address"
+                            disabled
+                            type="text"
+                            value={user.createdAt}
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    {/* <Row>
                     <Col md="12">
                       <Form.Group>
                         <label>About Me</label>
@@ -148,18 +131,19 @@ function User() {
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                  </Row>
-                  <Button
-                    className="btn-fill pull-right"
-                    type="submit"
-                    variant="info"
-                  >
-                    Update Profile
-                  </Button>
-                  <div className="clearfix"></div>
-                </Form>
-              </Card.Body>
-            </Card>
+                  </Row> */}
+                    {/* <Button
+                      className="btn-fill pull-right"
+                      type="submit"
+                      variant="info"
+                    >
+                      Update Profile
+                    </Button> */}
+                    <div className="clearfix"></div>
+                  </Form>
+                </Card.Body>
+              </Card>
+            ) : null}
           </Col>
           <Col md="4">
             <Card className="card-user">
@@ -173,22 +157,21 @@ function User() {
                 ></img>
               </div>
               <Card.Body>
-                <div className="author">
-                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                    <img
-                      alt="..."
-                      className="avatar border-gray"
-                      src={require('assets/img/faces/face-3.jpg').default}
-                    ></img>
-                    <h5 className="title">Mike Andrew</h5>
-                  </a>
-                  <p className="description">michael24</p>
-                </div>
-                <p className="description text-center">
-                  "Lamborghini Mercy <br></br>
-                  Your chick she so thirsty <br></br>
-                  I'm in that two seat Lambo"
-                </p>
+                {user ? (
+                  <div className="author">
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <img
+                        alt="..."
+                        className="avatar border-gray"
+                        src={require('assets/img/faces/face-3.jpg').default}
+                      ></img>
+                      <h5 className="title">
+                        {user.firstName} {user.lastName}
+                      </h5>
+                    </a>
+                    {/* <p className="description">michael24</p> */}
+                  </div>
+                ) : null}
               </Card.Body>
               <hr></hr>
               <div className="button-container mr-auto ml-auto">

@@ -1,14 +1,22 @@
 import React, { createContext, useReducer } from 'react';
-import { usersInitialState, UserListReducer } from 'reducers/userReducer';
+import {
+  usersInitialState,
+  UserListReducer,
+  listUserDetailReducer,
+} from 'reducers/userReducer';
 
 export const UserStateContext = createContext();
 export const UserStateDispatch = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [members, dispatch] = useReducer(UserListReducer, usersInitialState);
+  const [userDetails, userDetailsDispatch] = useReducer(
+    listUserDetailReducer,
+    {}
+  );
   return (
-    <UserStateContext.Provider value={members}>
-      <UserStateDispatch.Provider value={dispatch}>
+    <UserStateContext.Provider value={{ members, userDetails }}>
+      <UserStateDispatch.Provider value={{ dispatch, userDetailsDispatch }}>
         {children}
       </UserStateDispatch.Provider>
     </UserStateContext.Provider>
