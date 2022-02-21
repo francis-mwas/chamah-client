@@ -32,9 +32,20 @@ function Dashboard() {
   const { contributionsDispatch } = contribDispatch;
   const { contributions } = contributionsContext.contributions;
 
-  console.log('The contributions: ', contributions.data);
-
   const { members } = usersList;
+
+  const totalContributions = [];
+  if (contributions.data) {
+    let amountpaid = contributions.data.map(
+      (contribution) => contribution.amountPaid
+    );
+    const getAmount = amountpaid.reduce((currentAmount, acc) => {
+      return currentAmount + acc;
+    }, 0);
+    totalContributions.push(getAmount);
+    console.log("Let's get the balance: ", contributions.data);
+  }
+  console.log('The total amount paid: ', totalContributions.join() * 1);
 
   useEffect(() => {
     getAllUsers(dispatch.dispatch);
@@ -83,7 +94,9 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Total Contribution</p>
-                      <Card.Title as="h4">$ 1,345</Card.Title>
+                      <Card.Title as="h4">
+                        $ {totalContributions.join() * 1}
+                      </Card.Title>
                     </div>
                   </Col>
                 </Row>
