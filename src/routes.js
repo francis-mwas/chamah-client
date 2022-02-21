@@ -26,14 +26,7 @@ const appRoutes = {
       layout: '/admin',
       isPrivate: true,
     },
-    {
-      path: '/user',
-      name: 'User Profile',
-      icon: 'nc-icon nc-circle-09',
-      component: UserProfile,
-      layout: '/admin',
-      isPrivate: true,
-    },
+
     {
       path: '/members',
       name: 'Members',
@@ -42,14 +35,7 @@ const appRoutes = {
       layout: '/admin',
       isPrivate: true,
     },
-    {
-      path: '/user-login',
-      name: 'login',
-      icon: 'nc-icon nc-notes',
-      component: UserLogin,
-      layout: '/admin',
-      isPrivate: true,
-    },
+
     {
       path: '/contributions',
       name: 'Contributions',
@@ -66,14 +52,14 @@ const appRoutes = {
     //   layout: '/admin',
     //   isPrivate: true,
     // },
-    // {
-    //   path: '/icons',
-    //   name: 'Icons',
-    //   icon: 'nc-icon nc-atom',
-    //   component: Icons,
-    //   layout: '/admin',
-    //   isPrivate: true,
-    // },
+    {
+      path: '/icons',
+      name: 'Icons',
+      icon: 'nc-icon nc-atom',
+      component: Icons,
+      layout: '/admin',
+      isPrivate: true,
+    },
     // {
     //   path: '/maps',
     //   name: 'Maps',
@@ -91,14 +77,30 @@ const appRoutes = {
     //   layout: '/admin',
     //   isPrivate: true,
     // },
+    // {
+    //   path: '/notifications',
+    //   name: 'Notifications',
+    //   icon: 'nc-icon nc-bell-55',
+    //   component: Notifications,
+    //   layout: '/admin',
+    //   isPrivate: true,
+    // },
     {
-      path: '/notifications',
-      name: 'Notifications',
-      icon: 'nc-icon nc-bell-55',
-      component: Notifications,
+      path: '/user',
+      name: 'User Profile',
+      icon: 'nc-icon nc-circle-09',
+      component: UserProfile,
       layout: '/admin',
       isPrivate: true,
     },
+    // {
+    //   path: '/user-login',
+    //   name: 'login',
+    //   icon: 'nc-icon nc-notes',
+    //   component: UserLogin,
+    //   layout: '/admin',
+    //   isPrivate: true,
+    // },
   ],
 };
 

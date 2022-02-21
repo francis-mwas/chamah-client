@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import ChartistGraph from 'react-chartist';
-import { useUserState, useUserDispatch } from 'hooks';
+import {
+  useUserState,
+  useUserDispatch,
+  useContributionContext,
+  useContributionDispatch,
+} from 'hooks';
 import { getAllUsers } from 'actions/userActions';
+import { getAllContributions } from 'actions/contributionActions';
 // react-bootstrap components
 import {
   Badge,
@@ -21,10 +27,19 @@ import {
 function Dashboard() {
   const dispatch = useUserDispatch();
   const usersList = useUserState();
+  const contribDispatch = useContributionDispatch();
+  const contributionsContext = useContributionContext();
+  const { contributionsDispatch } = contribDispatch;
+  const { contributions } = contributionsContext.contributions;
+
+  console.log('The contributions: ', contributions.data);
+
   const { members } = usersList;
+
   useEffect(() => {
     getAllUsers(dispatch.dispatch);
-  }, [dispatch.dispatch]);
+    getAllContributions(contributionsDispatch);
+  }, [dispatch.dispatch, contributionsDispatch]);
 
   return (
     <>
