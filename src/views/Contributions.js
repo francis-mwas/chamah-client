@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useContributionContext, useContributionDispatch } from 'hooks';
 import { getAllContributions } from 'actions/contributionActions';
 import Loader from 'components/Loader/Loader';
@@ -33,6 +34,11 @@ function Contributions() {
       <Container fluid>
         <Row>
           <Col md="12">
+            <Link to="/admin/user-login/">
+              <Button variant="primary" className="mb-3">
+                Add A Contribution
+              </Button>
+            </Link>
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
                 <Card.Title as="h4">

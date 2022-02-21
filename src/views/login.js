@@ -82,9 +82,33 @@ function UserLogin() {
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="12">
+                    <Col md="8">
                       <Form.Group>
-                        <label>Address</label>
+                        <label>Amount</label>
+                        <Form.Control
+                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                          placeholder="Home Address"
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="8">
+                      <Form.Group>
+                        <label>Amount paid</label>
+                        <Form.Control
+                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                          placeholder="Home Address"
+                          type="text"
+                        ></Form.Control>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="8">
+                      <Form.Group>
+                        <label>Date deposited</label>
                         <Form.Control
                           defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                           placeholder="Home Address"
