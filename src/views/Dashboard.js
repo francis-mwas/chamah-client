@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ChartistGraph from 'react-chartist';
+import { useUserState, useUserDispatch } from 'hooks';
+import { getAllUsers } from 'actions/userActions';
 // react-bootstrap components
 import {
   Badge,
@@ -17,6 +19,13 @@ import {
 } from 'react-bootstrap';
 
 function Dashboard() {
+  const dispatch = useUserDispatch();
+  const usersList = useUserState();
+  const { members } = usersList;
+  useEffect(() => {
+    getAllUsers(dispatch.dispatch);
+  }, [dispatch.dispatch]);
+
   return (
     <>
       <Container fluid>
@@ -33,7 +42,7 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Target Contribution 2022</p>
-                      <Card.Title as="h4">$ 1,345</Card.Title>
+                      <Card.Title as="h4">$ 100,000</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -109,10 +118,14 @@ function Dashboard() {
                     </div>
                   </Col>
                   <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">All Members</p>
-                      <Card.Title as="h4">100</Card.Title>
-                    </div>
+                    {members.members.data ? (
+                      <div className="numbers">
+                        <p className="card-category">All Members</p>
+                        <Card.Title as="h4">
+                          {members.members.data.length}
+                        </Card.Title>
+                      </div>
+                    ) : null}
                   </Col>
                 </Row>
               </Card.Body>
