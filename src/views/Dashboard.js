@@ -35,6 +35,7 @@ function Dashboard() {
   const { members } = usersList;
 
   const totalContributions = [];
+
   if (contributions.data) {
     let amountpaid = contributions.data.map(
       (contribution) => contribution.amountPaid
@@ -45,6 +46,7 @@ function Dashboard() {
     totalContributions.push(getAmount);
     console.log("Let's get the balance: ", contributions.data);
   }
+  
   console.log('The total amount paid: ', totalContributions.join() * 1);
 
   useEffect(() => {

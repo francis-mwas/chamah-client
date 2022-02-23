@@ -1,5 +1,5 @@
 import Dashboard from 'views/Dashboard.js';
-import Login from 'views/login';
+import Login from './views/Login/index.js';
 import UserProfile from 'views/UserProfile.js';
 // import TableList from 'views/ListUsers';
 import ListUsers from 'views/ListUsers';
