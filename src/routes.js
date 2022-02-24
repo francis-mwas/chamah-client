@@ -1,9 +1,9 @@
 import Dashboard from 'views/Dashboard.js';
-import Login from 'views/login';
+import Login from './views/Login/index.js';
 import UserProfile from 'views/UserProfile.js';
 // import TableList from 'views/ListUsers';
 import ListUsers from 'views/ListUsers';
-import UserLogin from 'views/UserLogin';
+import AddContribution from 'views/AddContribution';
 import Contributions from 'views/Contributions';
 import Typography from 'views/Typography.js';
 import Icons from 'views/Icons.js';
@@ -26,14 +26,7 @@ const appRoutes = {
       layout: '/admin',
       isPrivate: true,
     },
-    {
-      path: '/user',
-      name: 'User Profile',
-      icon: 'nc-icon nc-circle-09',
-      component: UserProfile,
-      layout: '/admin',
-      isPrivate: true,
-    },
+
     {
       path: '/members',
       name: 'Members',
@@ -42,14 +35,7 @@ const appRoutes = {
       layout: '/admin',
       isPrivate: true,
     },
-    {
-      path: '/user-login',
-      name: 'login',
-      icon: 'nc-icon nc-notes',
-      component: UserLogin,
-      layout: '/admin',
-      isPrivate: true,
-    },
+
     {
       path: '/contributions',
       name: 'Contributions',
@@ -66,14 +52,14 @@ const appRoutes = {
     //   layout: '/admin',
     //   isPrivate: true,
     // },
-    // {
-    //   path: '/icons',
-    //   name: 'Icons',
-    //   icon: 'nc-icon nc-atom',
-    //   component: Icons,
-    //   layout: '/admin',
-    //   isPrivate: true,
-    // },
+    {
+      path: '/icons',
+      name: 'Icons',
+      icon: 'nc-icon nc-atom',
+      component: Icons,
+      layout: '/admin',
+      isPrivate: true,
+    },
     // {
     //   path: '/maps',
     //   name: 'Maps',
@@ -91,11 +77,27 @@ const appRoutes = {
     //   layout: '/admin',
     //   isPrivate: true,
     // },
+    // {
+    //   path: '/notifications',
+    //   name: 'Notifications',
+    //   icon: 'nc-icon nc-bell-55',
+    //   component: Notifications,
+    //   layout: '/admin',
+    //   isPrivate: true,
+    // },
     {
-      path: '/notifications',
-      name: 'Notifications',
-      icon: 'nc-icon nc-bell-55',
-      component: Notifications,
+      path: '/user',
+      name: 'User Profile',
+      icon: 'nc-icon nc-circle-09',
+      component: UserProfile,
+      layout: '/admin',
+      isPrivate: true,
+    },
+    {
+      path: '/add-contribution',
+      name: 'add contribution',
+      icon: 'nc-icon nc-notes',
+      component: AddContribution,
       layout: '/admin',
       isPrivate: true,
     },

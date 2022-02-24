@@ -10,24 +10,31 @@ import './assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0';
 import './assets/css/demo.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-import Login from 'views/login';
+import Login from 'views/Login/index.js';
 import AdminLayout from 'layouts/Admin.js';
-import { AuthContextProvider, UserContextProvider } from '../src/context';
+
+import {
+  AuthContextProvider,
+  UserContextProvider,
+  ContributionsContextProvider,
+} from '../src/context';
 import PrivateRoutes from '../src/components/HOC/PrivateRoutes';
 
 ReactDOM.render(
   <AuthContextProvider>
     <UserContextProvider>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <PrivateRoutes
-            path="/admin"
-            render={(props) => <AdminLayout {...props} />}
-          />
-        </Switch>
-      </BrowserRouter>
-      ,
+      <ContributionsContextProvider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <PrivateRoutes
+              path="/admin"
+              render={(props) => <AdminLayout {...props} />}
+            />
+          </Switch>
+        </BrowserRouter>
+        ,
+      </ContributionsContextProvider>
     </UserContextProvider>
   </AuthContextProvider>,
   document.getElementById('root')

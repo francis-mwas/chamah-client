@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ChartistGraph from 'react-chartist';
+import {
+  useUserState,
+  useUserDispatch,
+  useContributionContext,
+  useContributionDispatch,
+} from 'hooks';
+import { getAllUsers } from 'actions/userActions';
+import { getAllContributions } from 'actions/contributionActions';
 // react-bootstrap components
 import {
   Badge,
@@ -17,6 +25,35 @@ import {
 } from 'react-bootstrap';
 
 function Dashboard() {
+  const dispatch = useUserDispatch();
+  const usersList = useUserState();
+  const contribDispatch = useContributionDispatch();
+  const contributionsContext = useContributionContext();
+  const { contributionsDispatch } = contribDispatch;
+  const { contributions } = contributionsContext.contributions;
+
+  const { members } = usersList;
+
+  const totalContributions = [];
+
+  if (contributions.data) {
+    let amountpaid = contributions.data.map(
+      (contribution) => contribution.amountPaid
+    );
+    const getAmount = amountpaid.reduce((currentAmount, acc) => {
+      return currentAmount + acc;
+    }, 0);
+    totalContributions.push(getAmount);
+    console.log("Let's get the balance: ", contributions.data);
+  }
+  
+  console.log('The total amount paid: ', totalContributions.join() * 1);
+
+  useEffect(() => {
+    getAllUsers(dispatch.dispatch);
+    getAllContributions(contributionsDispatch);
+  }, [dispatch.dispatch, contributionsDispatch]);
+
   return (
     <>
       <Container fluid>
@@ -33,7 +70,7 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Target Contribution 2022</p>
-                      <Card.Title as="h4">$ 1,345</Card.Title>
+                      <Card.Title as="h4">$ 100,000</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -59,7 +96,9 @@ function Dashboard() {
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Total Contribution</p>
-                      <Card.Title as="h4">$ 1,345</Card.Title>
+                      <Card.Title as="h4">
+                        $ {totalContributions.join() * 1}
+                      </Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -109,10 +148,14 @@ function Dashboard() {
                     </div>
                   </Col>
                   <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">All Members</p>
-                      <Card.Title as="h4">100</Card.Title>
-                    </div>
+                    {members.members.data ? (
+                      <div className="numbers">
+                        <p className="card-category">All Members</p>
+                        <Card.Title as="h4">
+                          {members.members.data.length}
+                        </Card.Title>
+                      </div>
+                    ) : null}
                   </Col>
                 </Row>
               </Card.Body>

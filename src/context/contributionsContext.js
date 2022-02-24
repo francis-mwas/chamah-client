@@ -1,9 +1,23 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useReducer } from 'react';
+import {
+  contributionsInitialState,
+  ContributionsListReducer,
+} from '../reducers/contributionReducer';
 
-const ContributionProvider = createContext();
+export const ContributionsContext = createContext();
+export const ContributionsDispatch = createContext();
 
-function ContributionsContextProvider() {
-  const [contributions, setContributions] = useState([]);
-}
+export const ContributionsContextProvider = ({ children }) => {
+  const [contributions, contributionsDispatch] = useReducer(
+    ContributionsListReducer,
+    contributionsInitialState
+  );
 
-export { ContributionsContextProvider };
+  return (
+    <ContributionsContext.Provider value={{ contributions }}>
+      <ContributionsDispatch.Provider value={{ contributionsDispatch }}>
+        {children}
+      </ContributionsDispatch.Provider>
+    </ContributionsContext.Provider>
+  );
+};

@@ -25,7 +25,6 @@ function User() {
   let getId = history.location.pathname;
   let newArr = getId.split('/');
   let id = parseInt(newArr[newArr.length - 1]);
-
   useEffect(() => {
     getUserDetails(dispatch.userDetailsDispatch, id);
   }, []);

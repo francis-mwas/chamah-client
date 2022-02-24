@@ -9,6 +9,11 @@ import {
   UserContextProvider,
   UserStateDispatch,
 } from './userContext';
+import {
+  ContributionsDispatch,
+  ContributionsContext,
+  ContributionsContextProvider,
+} from './contributionsContext';
 
 export {
   AuthContextProvider,
@@ -17,4 +22,7 @@ export {
   UserStateContext,
   UserContextProvider,
   UserStateDispatch,
+  ContributionsDispatch,
+  ContributionsContext,
+  ContributionsContextProvider,
 };
