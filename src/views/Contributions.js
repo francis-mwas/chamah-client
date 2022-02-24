@@ -34,7 +34,7 @@ function Contributions() {
       <Container fluid>
         <Row>
           <Col md="12">
-            <Link to="/admin/user-login/">
+            <Link to="/admin/add-contribution">
               <Button variant="primary" className="mb-3">
                 Add A Contribution
               </Button>

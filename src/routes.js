@@ -87,6 +87,7 @@ const appRoutes = {
     // },
     {
       path: '/user',
+      hide: true,
       name: 'User Profile',
       icon: 'nc-icon nc-circle-09',
       component: UserProfile,
@@ -95,10 +96,11 @@ const appRoutes = {
     },
     {
       path: '/add-contribution',
+      hide: true,
       name: 'add contribution',
       icon: 'nc-icon nc-notes',
-      component: AddContribution,
       layout: '/admin',
+      component: AddContribution,
       isPrivate: true,
     },
   ],
