@@ -1,5 +1,6 @@
 import axios from 'axios';
 import setAuthToken from '../commons/setAuthToken';
+import { API_URLs } from '../utils/api-config';
 
 import {
   USER_LOGIN_REQUEST,
@@ -15,10 +16,7 @@ import {
 } from '../constants/userConstants';
 
 // const API_URL = 'http://localhost:8000/api/v1/';
-const API_URL  = 'https://jamhurican.herokuapp.com/api/v1/';
-
-
-
+const API_URL = 'https://jamhurican.herokuapp.com/api/v1/';
 
 const config = {
   headers: {
@@ -27,6 +25,8 @@ const config = {
 };
 
 export const loginUser = async (dispatch, loginPayload) => {
+  const url = window.location.hostname;
+  console.log('This is the url we are looking for: ', url);
   const { email, password } = loginPayload;
 
   try {
@@ -56,7 +56,7 @@ export const getUserDetails = async (dispatch, id) => {
   try {
     dispatch({ type: USER_DETAIL_REQUEST });
     const { data } = await axios.get(`${API_URL}users/${id}`);
-    console.log('The data from server user details: ', data);
+
     if (data) {
       dispatch({ type: USER_DETAIL_SUCCESS, payload: data.data });
     }

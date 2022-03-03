@@ -27,12 +27,7 @@ function Sidebar({ color, image, routes }) {
             if (!prop.redirect)
               return (
                 <li
-                  className={
-                    prop.upgrade
-                      ? 'active active-pro'
-                      : activeRoute(prop.layout + prop.path)
-                  }
-                  key={key}
+                  style={prop.hide ? { display: 'none' } : { display: 'block' }}
                 >
                   <NavLink
                     to={prop.layout + prop.path}
