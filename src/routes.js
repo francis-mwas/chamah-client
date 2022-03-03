@@ -3,6 +3,7 @@ import Login from './views/Login/index.js';
 import UserProfile from 'views/UserProfile.js';
 // import TableList from 'views/ListUsers';
 import ListUsers from 'views/ListUsers';
+import ContributionDetails from 'views/ContributionDetails';
 import AddContribution from 'views/AddContribution';
 import Contributions from 'views/Contributions';
 import Typography from 'views/Typography.js';
@@ -52,14 +53,14 @@ const appRoutes = {
     //   layout: '/admin',
     //   isPrivate: true,
     // },
-    {
-      path: '/icons',
-      name: 'Icons',
-      icon: 'nc-icon nc-atom',
-      component: Icons,
-      layout: '/admin',
-      isPrivate: true,
-    },
+    // {
+    //   path: '/icons',
+    //   name: 'Icons',
+    //   icon: 'nc-icon nc-atom',
+    //   component: Icons,
+    //   layout: '/admin',
+    //   isPrivate: true,
+    // },
     // {
     //   path: '/maps',
     //   name: 'Maps',
@@ -84,13 +85,22 @@ const appRoutes = {
     //   component: Notifications,
     //   layout: '/admin',
     //   isPrivate: true,
-    // },
+    // },ContributionDetails
     {
       path: '/user',
       hide: true,
       name: 'User Profile',
       icon: 'nc-icon nc-circle-09',
       component: UserProfile,
+      layout: '/admin',
+      isPrivate: true,
+    },
+    {
+      path: '/contribution-details',
+      hide: true,
+      name: '',
+      icon: 'nc-icon nc-circle-09',
+      component: ContributionDetails,
       layout: '/admin',
       isPrivate: true,
     },

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { useUserState, useUserDispatch } from 'hooks';
-import { getUserDetails } from 'actions/userActions';
+import { useHistory, Link } from 'react-router-dom';
+import { useContributionContext, useContributionDispatch } from 'hooks';
+import { getSingleContribution } from 'actions/contributionActions';
 import Loader from 'components/Loader/Loader';
 // react-bootstrap components
 import {
@@ -16,17 +16,28 @@ import {
   Col,
 } from 'react-bootstrap';
 
-function User() {
-  const dispatch = useUserDispatch();
-  const userData = useUserState();
+function ContributionDetail() {
+  const dispatch = useContributionDispatch();
+  const contribDetails = useContributionContext();
   const history = useHistory();
-  const { userDetails } = userData;
-  const { user } = userDetails;
+
+  const { loading, contributionDetail } = contribDetails;
+
   let getId = history.location.pathname;
   let newArr = getId.split('/');
   let id = parseInt(newArr[newArr.length - 1]);
+  console.log('The id to help us in search: ', id);
+
+  console.log(
+    'The contributions detaiuls are here: ',
+    contributionDetail.contribution
+  );
+  if (contributionDetail.contribution) {
+    const { data } = contributionDetail.contribution;
+    console.log('The data: ', data);
+  }
   useEffect(() => {
-    getUserDetails(dispatch.userDetailsDispatch, id);
+    getSingleContribution(dispatch.contribDetailDispatch, id);
   }, [getId]);
 
   return (
@@ -34,70 +45,52 @@ function User() {
       <Container fluid>
         <Row>
           <Col md="8">
-            {user ? (
-              <Card>
-                <Card.Header>
-                  <Card.Title as="h4">Edit Profile</Card.Title>
-                </Card.Header>
-                <Card.Body>
+            <Card>
+              <Card.Header>
+                <Card.Title as="h4">Contribution Details</Card.Title>
+              </Card.Header>
+
+              <Card.Body>
+                {loading ? <Loader /> : null}
+                {contributionDetail.contribution ? (
                   <Form>
                     <Row>
                       <Col className="pr-1" md="5">
                         <Form.Group>
-                          <label>User Role</label>
+                          <label>Contribution Target Amount</label>
                           <Form.Control
-                            defaultValue="Creative Code Inc."
                             disabled
                             placeholder="Company"
                             type="text"
-                            value={user.role}
+                            value={contributionDetail.contribution.data.amount}
+                            readOnly
                           ></Form.Control>
                         </Form.Group>
                       </Col>
                       <Col className="px-1" md="3">
                         <Form.Group>
-                          <label>Username</label>
+                          <label>Amount Paid</label>
                           <Form.Control
-                            defaultValue={user.email}
                             placeholder="Username"
                             type="text"
-                            value={user.email}
+                            value={
+                              contributionDetail.contribution.data.amountPaid
+                            }
+                            readOnly
                           ></Form.Control>
                         </Form.Group>
                       </Col>
                       <Col className="pl-1" md="4">
                         <Form.Group>
-                          <label htmlFor="exampleInputEmail1">
-                            Email address
-                          </label>
+                          <label htmlFor="exampleInputEmail1">Balance</label>
                           <Form.Control
                             placeholder="Email"
                             type="email"
-                            value={user.email}
-                          ></Form.Control>
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="pr-1" md="6">
-                        <Form.Group>
-                          <label>First Name</label>
-                          <Form.Control
-                            defaultValue="Mike"
-                            placeholder="Company"
-                            type="text"
-                            value={user.firstName}
-                          ></Form.Control>
-                        </Form.Group>
-                      </Col>
-                      <Col className="pl-1" md="6">
-                        <Form.Group>
-                          <label>Last Name</label>
-                          <Form.Control
-                            defaultValue="Andrew"
-                            placeholder="Last Name"
-                            type="text"
-                            value={user.lastName}
+                            value={
+                              contributionDetail.contribution.data.amount -
+                              contributionDetail.contribution.data.amountPaid
+                            }
+                            readOnly
                           ></Form.Control>
                         </Form.Group>
                       </Col>
@@ -107,7 +100,6 @@ function User() {
                         <Form.Group>
                           <label>Date Created</label>
                           <Form.Control
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                             placeholder="Home Address"
                             disabled
                             type="text"
@@ -115,38 +107,46 @@ function User() {
                               year: 'numeric',
                               month: 'long',
                               day: '2-digit',
-                            }).format(new Date(user.createdAt))}
+                            }).format(
+                              new Date(
+                                contributionDetail.contribution.data.createdAt
+                              )
+                            )}
+                            readOnly
                           ></Form.Control>
                         </Form.Group>
                       </Col>
                     </Row>
-                    {/* <Row
-                    <Col md="12">
-                      <Form.Group>
-                        <label>About Me</label>
-                        <Form.Control
-                          cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                          that two seat Lambo."
-                          placeholder="Here can be your description"
-                          rows="4"
-                          as="textarea"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row> */}
-                    {/* <Button
-                      className="btn-fill pull-right"
-                      type="submit"
-                      variant="info"
-                    >
-                      Update Profile
-                    </Button> */}
+                    <label>Member Details</label>
+                    <Row>
+                      <Col className="pr-1" md="6">
+                        <Form.Group>
+                          <label>First Name</label>
+                          <Form.Control
+                            placeholder="Company"
+                            type="text"
+                            value="John Doe"
+                            readOnly
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                      <Col className="pl-1" md="6">
+                        <Form.Group>
+                          <label>Email</label>
+                          <Form.Control
+                            defaultValue="doe@gmail.com"
+                            placeholder="Last Name"
+                            type="text"
+                            readOnly
+                          ></Form.Control>
+                        </Form.Group>
+                      </Col>
+                    </Row>
                     <div className="clearfix"></div>
                   </Form>
-                </Card.Body>
-              </Card>
-            ) : null}
+                ) : null}
+              </Card.Body>
+            </Card>
           </Col>
           <Col md="4">
             <Card className="card-user">
@@ -159,23 +159,6 @@ function User() {
                   }
                 ></img>
               </div>
-              <Card.Body>
-                {user ? (
-                  <div className="author">
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                      <img
-                        alt="..."
-                        className="avatar border-gray"
-                        src={require('assets/img/faces/face-3.jpg').default}
-                      ></img>
-                      <h5 className="title">
-                        {user.firstName} {user.lastName}
-                      </h5>
-                    </a>
-                    {/* <p className="description">michael24</p> */}
-                  </div>
-                ) : null}
-              </Card.Body>
               <hr></hr>
               <div className="button-container mr-auto ml-auto">
                 <Button
@@ -211,4 +194,4 @@ function User() {
   );
 }
 
-export default User;
+export default ContributionDetail;

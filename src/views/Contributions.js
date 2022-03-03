@@ -34,11 +34,6 @@ function Contributions() {
       <Container fluid>
         <Row>
           <Col md="12">
-            <Link to="/admin/add-contribution">
-              <Button variant="primary" className="mb-3">
-                Add A Contribution
-              </Button>
-            </Link>
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
                 <Card.Title as="h4">
@@ -60,6 +55,8 @@ function Contributions() {
                       <th className="border-0">Amount Paid</th>
                       <th className="border-0">Balance</th>
                       <th className="border-0">Date Deposited</th>
+                      {}
+                      <th className="border-0">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -80,6 +77,19 @@ function Contributions() {
                                 month: 'long',
                                 day: '2-digit',
                               }).format(new Date(contribution.dateDeposited))}
+                            </td>
+                            <td>
+                              <Button variant="info">
+                                <Link
+                                  to={`/admin/contribution-details/${contribution.id}`}
+                                >
+                                  Details
+                                </Link>
+                              </Button>
+                              {' | '}
+                              <Button variant="danger">
+                                <Link to="/">Delete</Link>
+                              </Button>
                             </td>
                           </tr>
                         ))

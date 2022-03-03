@@ -3,6 +3,8 @@ import {
   contributionsInitialState,
   ContributionsListReducer,
   getContributionDetail,
+  ADD_INI_STATE,
+  addContribution,
 } from '../reducers/contributionReducer';
 
 export const ContributionsContext = createContext();
@@ -17,13 +19,21 @@ export const ContributionsContextProvider = ({ children }) => {
     getContributionDetail,
     {}
   );
+  const [addUserContribution, addUserContribDispatch] = useReducer(
+    addContribution,
+    ADD_INI_STATE
+  );
 
   return (
     <ContributionsContext.Provider
-      value={{ contributions, contributionDetail }}
+      value={{ contributions, contributionDetail, addUserContribution }}
     >
       <ContributionsDispatch.Provider
-        value={{ contributionsDispatch, contribDetailDispatch }}
+        value={{
+          contributionsDispatch,
+          contribDetailDispatch,
+          addUserContribDispatch,
+        }}
       >
         {children}
       </ContributionsDispatch.Provider>
