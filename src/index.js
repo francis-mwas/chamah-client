@@ -10,7 +10,7 @@ import './assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0';
 import './assets/css/demo.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-import Login from 'views/Login/index.js';
+import Login from 'views/Login';
 import AdminLayout from 'layouts/Admin.js';
 
 import {
