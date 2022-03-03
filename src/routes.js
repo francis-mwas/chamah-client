@@ -104,15 +104,15 @@ const appRoutes = {
       layout: '/admin',
       isPrivate: true,
     },
-    // {
-    //   path: '/add-contribution',
-    //   hide: true,
-    //   name: 'add contribution',
-    //   icon: 'nc-icon nc-notes',
-    //   layout: '/admin',
-    //   component: AddContribution,
-    //   isPrivate: true,
-    // },
+    {
+      path: '/add-contribution',
+      hide: true,
+      name: 'add contribution',
+      icon: 'nc-icon nc-notes',
+      layout: '/admin',
+      component: AddContribution,
+      isPrivate: true,
+    },
   ],
 };
 

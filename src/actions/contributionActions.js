@@ -23,7 +23,7 @@ export const getSingleContribution = async (dispatch, contributionId) => {
   try {
     dispatch({ type: CONTRIBUTION_DETAIL_REQUEST });
     const { data } = await axios.get(
-      `${API_URL}/contribution/${contributionId}/`
+      `${API_URL}contributions/contribution/${contributionId}/`
     );
     console.log('The contribution details: ', data);
     if (data) {
@@ -47,7 +47,7 @@ export const addContribution = async (dispatch, payload) => {
     dispatch({ type: ADD_CONTRIBUTION_REQUEST });
 
     const { data } = await axios.post(
-      `${API_URL}/add?userId=${userId}`,
+      `${API_URL}contributions/add?userId=${userId}`,
       { amount, amountPaid, dateDeposited },
       config
     );
@@ -68,7 +68,7 @@ export const addContribution = async (dispatch, payload) => {
 export const getAllContributions = async (dispatch) => {
   try {
     dispatch({ type: CONTRIBUTION_LIST_REQUEST });
-    const { data } = await axios.get(`${API_URL}/`);
+    const { data } = await axios.get(`${API_URL}contributions/`);
     dispatch({ type: CONTRIBUTION_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
