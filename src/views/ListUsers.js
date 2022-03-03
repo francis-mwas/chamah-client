@@ -73,8 +73,12 @@ function ListUsers() {
                                 </Link>
                               </Button>
                               {' | '}
-                              <Button variant="danger">
-                                <Link to="/">Delete</Link>
+                              <Button variant="warning">
+                                <Link
+                                  to={`/admin/add-contribution/${member.id}`}
+                                >
+                                  Add Contribution
+                                </Link>
                               </Button>
                             </td>
                           </tr>

@@ -5,6 +5,7 @@ import PrivateRoutes from '../components/HOC/PrivateRoutes';
 import AdminNavbar from 'components/Navbars/AdminNavbar';
 import Footer from 'components/Footer/Footer';
 import Sidebar from 'components/Sidebar/Sidebar';
+import AddContribution from '../views/AddContribution';
 import FixedPlugin from 'components/FixedPlugin/FixedPlugin.js';
 
 import routes from 'routes.js';
@@ -28,12 +29,10 @@ function Admin(props) {
             key={key}
           />
         );
-      } else {
-        return null;
       }
     });
   };
-  
+
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
