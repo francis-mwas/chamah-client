@@ -14,7 +14,11 @@ import {
   USER_DETAIL_FAIL,
 } from '../constants/userConstants';
 
-const API_URL = 'http://localhost:8000/api/v1/';
+// const API_URL = 'http://localhost:8000/api/v1/';
+const API_URL  = 'https://jamhurican.herokuapp.com/api/v1/';
+
+
+
 
 const config = {
   headers: {

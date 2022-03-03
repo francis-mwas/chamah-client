@@ -5,7 +5,8 @@ import {
   CONTRIBUTION_LIST_FAIL,
 } from '../constants/contributionConstants';
 
-const API_URL = 'http://localhost:8000/api/v1/';
+// const API_URL = 'http://localhost:8000/api/v1/';
+const API_URL  = 'https://jamhurican.herokuapp.com/api/v1/';
 const config = {
   headers: {
     'Content-Type': 'application/json',
