@@ -13,6 +13,12 @@ import {
   USER_DETAIL_REQUEST,
   USER_DETAIL_SUCCESS,
   USER_DETAIL_FAIL,
+  ADD_USER_REQUEST,
+  ADD_USER_SUCCESS,
+  ADD_USER_FAIL,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
 } from '../constants/userConstants';
 
 // const API_URL = 'http://localhost:8000/api/v1/';
@@ -23,10 +29,47 @@ const config = {
     'Content-Type': 'application/json',
   },
 };
+export const addNewUser = async (dispatch, userPayload) => {
+  const { firstName, lastName, email, role, password } = userPayload;
+  try {
+    dispatch({ type: ADD_USER_REQUEST });
+    const { data } = await axios.post(
+      `${API_URL}users`,
+      { firstName, lastName, email, role, password },
+      config
+    );
+
+    dispatch({ type: ADD_USER_SUCCESS, payload: data });
+
+    console.log('The data am getting from the server: ', data);
+  } catch (error) {
+    dispatch({
+      type: ADD_USER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const deleteUser = async (dispatch, id) => {
+  try {
+    dispatch({ type: DELETE_USER_REQUEST });
+    const { data } = await axios.delete(`${API_URL}users/${id}`);
+
+    dispatch({ type: DELETE_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: DELETE_USER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const loginUser = async (dispatch, loginPayload) => {
-  const url = window.location.hostname;
-  console.log('This is the url we are looking for: ', url);
   const { email, password } = loginPayload;
 
   try {

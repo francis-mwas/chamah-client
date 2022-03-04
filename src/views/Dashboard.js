@@ -46,11 +46,11 @@ function Dashboard() {
     totalContributions.push(getAmount);
     console.log("Let's get the balance: ", contributions.data);
   }
-  
+
   console.log('The total amount paid: ', totalContributions.join() * 1);
 
   useEffect(() => {
-    getAllUsers(dispatch.dispatch);
+    getAllUsers(dispatch.userListDispatch);
     getAllContributions(contributionsDispatch);
   }, [dispatch.dispatch, contributionsDispatch]);
 
@@ -112,7 +112,7 @@ function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-          <Col lg="3" sm="6">
+          {/* <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -137,7 +137,7 @@ function Dashboard() {
                 </div>
               </Card.Footer>
             </Card>
-          </Col>
+          </Col> */}
           <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
@@ -169,7 +169,7 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col md="8">
             <Card>
               <Card.Header>
@@ -276,8 +276,8 @@ function Dashboard() {
               </Card.Body>
             </Card>
           </Col>
-        </Row>
-        <Row>
+        </Row> */}
+        {/* <Row>
           <Col md="6">
             <Card>
               <Card.Header>
@@ -654,7 +654,7 @@ function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </>
   );

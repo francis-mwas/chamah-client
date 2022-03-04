@@ -43,11 +43,15 @@ function AddContribution() {
       dateDeposited,
       userId,
     });
+    setAmount('');
+    setAmountPaid('');
+    setDateDeposited('');
+    onsole.log('The res: ', errorMessage);
     if (!response) return;
   };
 
-  console.log('The id: ', loading);
-  console.log('The contribDetails: ', contribDetails);
+  console.log('The id: ', response);
+  console.log('The contribDetails: ', contribDetails.addUserContribution);
 
   return (
     <>
@@ -59,14 +63,11 @@ function AddContribution() {
                 <Card.Title as="h4">Add user contribution</Card.Title>
               </Card.Header>
               <Card.Body>
+                {loading && <Loader />}
                 {errorMessage ? (
                   <p className={styles.error}>{errorMessage}</p>
-                ) : (
-                  <p style={{ color: 'green' }}>
-                    Contribution Added successfully
-                  </p>
-                )}
-                {loading && <Loader />}
+                ) : null}
+
                 <Form>
                   <Row>
                     <Col md="8">

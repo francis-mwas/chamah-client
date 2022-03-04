@@ -5,7 +5,6 @@ import PrivateRoutes from '../components/HOC/PrivateRoutes';
 import AdminNavbar from 'components/Navbars/AdminNavbar';
 import Footer from 'components/Footer/Footer';
 import Sidebar from 'components/Sidebar/Sidebar';
-import AddContribution from '../views/AddContribution';
 import FixedPlugin from 'components/FixedPlugin/FixedPlugin.js';
 
 import routes from 'routes.js';
@@ -55,7 +54,7 @@ function Admin(props) {
           <div className="content">
             <Switch>{getRoutes(routes)}</Switch>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
       <FixedPlugin
