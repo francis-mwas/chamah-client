@@ -13,3 +13,8 @@ export const USER_LIST_FAIL = 'USER_LIST_FAIL';
 export const USER_DETAIL_REQUEST = 'USER_DETAIL_REQUEST';
 export const USER_DETAIL_SUCCESS = 'USER_DETAIL_SUCCESS';
 export const USER_DETAIL_FAIL = 'USER_DETAIL_FAIL';
+
+//add user constants 
+export const ADD_USER_REQUEST = 'ADD_USER_REQUEST';
+export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
+export const ADD_USER_FAIL = 'ADD_USER_FAIL';

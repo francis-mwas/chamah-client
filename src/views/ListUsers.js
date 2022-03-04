@@ -34,6 +34,9 @@ function ListUsers() {
       <Container fluid>
         <Row>
           <Col md="12">
+            <Button variant="primary" className="my-2">
+              <Link to="/admin/add-contribution/">Add Contribution</Link>
+            </Button>
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
                 <Card.Title as="h4">Jamhurican Group Members</Card.Title>
