@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useUserState, useUserDispatch } from 'hooks';
-import { getAllUsers } from 'actions/userActions';
+import { getAllUsers, deleteUser } from 'actions/userActions';
 import Loader from 'components/Loader/Loader';
 
 import {
@@ -22,13 +22,24 @@ function ListUsers() {
   const usersList = useUserState();
   const { members } = usersList;
   const { loading } = members;
+  console.log('The dispatch: ', dispatch);
 
   let count = 1;
+  const refreshPage = () => {
+    window.location.reload(true);
+  };
+
+  const handleClick = async (userId) => {
+    let response = await deleteUser(dispatch.deleteDispatch, userId);
+    refreshPage();
+
+    console.log('Delete response: ', response);
+  };
 
   useEffect(() => {
-    getAllUsers(dispatch.dispatch);
-  }, [dispatch.dispatch]);
-
+    getAllUsers(dispatch.userListDispatch);
+  }, [dispatch.userListDispatch]);
+  console.log('The delete dispatch: ', dispatch.userListDispatch);
   return (
     <>
       <Container fluid>
@@ -68,7 +79,7 @@ function ListUsers() {
                             <td>{member.lastName}</td>
                             <td>{member.email}</td>
                             <td>{member.role}</td>
-                            <td>Ksh 89666</td>
+                            <td>C$ 89666</td>
                             <td>
                               <Button variant="info">
                                 <Link to={`/admin/user/${member.id}`}>
@@ -82,6 +93,13 @@ function ListUsers() {
                                 >
                                   Add Contribution
                                 </Link>
+                              </Button>
+                              {' | '}
+                              <Button
+                                variant="warning"
+                                onClick={() => handleClick(member.id)}
+                              >
+                                Delete User
                               </Button>
                             </td>
                           </tr>

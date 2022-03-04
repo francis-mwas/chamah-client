@@ -16,10 +16,13 @@ import {
   ADD_USER_REQUEST,
   ADD_USER_SUCCESS,
   ADD_USER_FAIL,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
 } from '../constants/userConstants';
 
-const API_URL = 'http://localhost:8000/api/v1/';
-// const API_URL = 'https://jamhurican.herokuapp.com/api/v1/';
+// const API_URL = 'http://localhost:8000/api/v1/';
+const API_URL = 'https://jamhurican.herokuapp.com/api/v1/';
 
 const config = {
   headers: {
@@ -35,9 +38,10 @@ export const addNewUser = async (dispatch, userPayload) => {
       { firstName, lastName, email, role, password },
       config
     );
-    if (data) {
-      dispatch({ type: ADD_USER_SUCCESS, payload: data });
-    }
+
+    dispatch({ type: ADD_USER_SUCCESS, payload: data });
+
+    console.log('The data am getting from the server: ', data);
   } catch (error) {
     dispatch({
       type: ADD_USER_FAIL,
@@ -48,6 +52,23 @@ export const addNewUser = async (dispatch, userPayload) => {
     });
   }
 };
+export const deleteUser = async (dispatch, id) => {
+  try {
+    dispatch({ type: DELETE_USER_REQUEST });
+    const { data } = await axios.delete(`${API_URL}users/${id}`);
+
+    dispatch({ type: DELETE_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: DELETE_USER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
 export const loginUser = async (dispatch, loginPayload) => {
   const { email, password } = loginPayload;
 

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // react plugin for creating notifications over the dashboard
-import NotificationAlert from "react-notification-alert";
+import NotificationAlert from 'react-notification-alert';
 // react-bootstrap components
 import {
   Alert,
@@ -13,7 +13,7 @@ import {
   Container,
   Row,
   Col,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
 function Notifications() {
   const [showModal, setShowModal] = React.useState(false);
@@ -23,19 +23,19 @@ function Notifications() {
     var type;
     switch (color) {
       case 1:
-        type = "primary";
+        type = 'primary';
         break;
       case 2:
-        type = "success";
+        type = 'success';
         break;
       case 3:
-        type = "danger";
+        type = 'danger';
         break;
       case 4:
-        type = "warning";
+        type = 'warning';
         break;
       case 5:
-        type = "info";
+        type = 'info';
         break;
       default:
         break;
@@ -52,7 +52,7 @@ function Notifications() {
         </div>
       ),
       type: type,
-      icon: "nc-icon nc-bell-55",
+      icon: 'nc-icon nc-bell-55',
       autoDismiss: 7,
     };
     notificationAlertRef.current.notificationAlert(options);
@@ -67,7 +67,7 @@ function Notifications() {
           <Card.Header>
             <Card.Title as="h4">Notifications</Card.Title>
             <p className="card-category">
-              Handcrafted by our friend and colleague{" "}
+              Handcrafted by our friend and colleague{' '}
               <a
                 href="https://github.com/EINazare"
                 rel="noopener noreferrer"
@@ -75,7 +75,7 @@ function Notifications() {
               >
                 Nazare Emanuel-Ioan
               </a>
-              . Please checkout the{" "}
+              . Please checkout the{' '}
               <a
                 href="https://github.com/creativetimofficial/react-notification-alert"
                 rel="noopener noreferrer"
@@ -232,34 +232,34 @@ function Notifications() {
               </Row>
               <Row className="justify-content-center">
                 <Col lg="3" md="3">
-                  <Button block onClick={() => notify("tl")} variant="default">
+                  <Button block onClick={() => notify('tl')} variant="default">
                     Top Left
                   </Button>
                 </Col>
                 <Col lg="3" md="3">
-                  <Button block onClick={() => notify("tc")} variant="default">
+                  <Button block onClick={() => notify('tc')} variant="default">
                     Top Center
                   </Button>
                 </Col>
                 <Col lg="3" md="3">
-                  <Button block onClick={() => notify("tr")} variant="default">
+                  <Button block onClick={() => notify('tr')} variant="default">
                     Top Right
                   </Button>
                 </Col>
               </Row>
               <Row className="justify-content-center">
                 <Col lg="3" md="3">
-                  <Button block onClick={() => notify("bl")} variant="default">
+                  <Button block onClick={() => notify('bl')} variant="default">
                     Bottom Left
                   </Button>
                 </Col>
                 <Col lg="3" md="3">
-                  <Button block onClick={() => notify("bc")} variant="default">
+                  <Button block onClick={() => notify('bc')} variant="default">
                     Bottom Center
                   </Button>
                 </Col>
                 <Col lg="3" md="3">
-                  <Button block onClick={() => notify("br")} variant="default">
+                  <Button block onClick={() => notify('br')} variant="default">
                     Bottom Right
                   </Button>
                 </Col>

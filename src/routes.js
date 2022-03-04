@@ -86,7 +86,7 @@ const appRoutes = {
     //   component: Notifications,
     //   layout: '/admin',
     //   isPrivate: true,
-    // },ContributionDetails
+    // },
     {
       path: '/user',
       hide: true,

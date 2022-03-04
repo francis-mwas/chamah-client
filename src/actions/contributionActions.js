@@ -40,8 +40,8 @@ export const getSingleContribution = async (dispatch, contributionId) => {
   }
 };
 
-export const addContribution = async (dispatch, payload) => {
-  const { amount, amountPaid, dateDeposited, userId } = payload;
+export const addContribution = async (dispatch, userPayload) => {
+  const { amount, amountPaid, dateDeposited, userId } = userPayload;
 
   try {
     dispatch({ type: ADD_CONTRIBUTION_REQUEST });

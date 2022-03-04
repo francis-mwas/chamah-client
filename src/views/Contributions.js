@@ -86,10 +86,6 @@ function Contributions() {
                                   Details
                                 </Link>
                               </Button>
-                              {' | '}
-                              <Button variant="danger">
-                                <Link to="/">Delete</Link>
-                              </Button>
                             </td>
                           </tr>
                         ))

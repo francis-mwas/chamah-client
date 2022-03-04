@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 import { addNewUser } from 'actions/userActions';
@@ -28,6 +28,10 @@ function AddMember() {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('normal-user');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(null);
+
+  const { addMembers } = userState;
+  const { loading, userData, error } = addMembers;
 
   const handleSubmitUser = async (e) => {
     e.preventDefault();
@@ -39,10 +43,25 @@ function AddMember() {
       role,
       password,
     });
+    console.log('The response: ', response);
+    // setMessage('Member added successfully!');
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+
     if (!response) return;
   };
 
-  console.log('The contribDetails: ', userState);
+  console.log('The data am expecting: ', userState);
+
+  console.log('The loading happening: ', loading);
+  useEffect(() => {
+    if (userData) {
+      setMessage(userData.message);
+      console.log('the message: ', userData.message);
+    }
+  }, []);
 
   return (
     <>
@@ -50,10 +69,14 @@ function AddMember() {
         <Row>
           <Col md="8">
             <Card>
+              {loading && <Loader />}
               <Card.Header>
                 <Card.Title as="h4">Add user contribution</Card.Title>
               </Card.Header>
+
               <Card.Body>
+                {message ? <h4 style={{ color: 'green' }}>{message}</h4> : null}
+                {error ? <p style={{ color: 'red' }}>{error}</p> : null}
                 <Form>
                   <Row>
                     <Col md="8">
@@ -87,7 +110,7 @@ function AddMember() {
                         <label>Email</label>
                         <Form.Control
                           placeholder="Email"
-                          type="date"
+                          type="text"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                         ></Form.Control>
@@ -100,7 +123,7 @@ function AddMember() {
                         <label>Role</label>
                         <Form.Control
                           placeholder="Role"
-                          type="date"
+                          type="text"
                           value={role}
                           onChange={(e) => setRole(e.target.value)}
                         ></Form.Control>
@@ -112,7 +135,7 @@ function AddMember() {
                       <Form.Group>
                         <label>Password</label>
                         <Form.Control
-                          placeholder="Date Amount Deposited"
+                          placeholder="Member password"
                           type="password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
@@ -121,21 +144,24 @@ function AddMember() {
                     </Col>
                   </Row>
 
-                  <Button
+                  {/* <Button
                     className="btn-fill pull-right"
                     type="submit"
                     variant="info"
                     onClick={handleSubmitUser}
                   >
                     Add Member
+                  </Button> */}
+                  <Button
+                    className="btn-fill pull-right"
+                    onClick={handleSubmitUser}
+                    type="submit"
+                    variant="info"
+                    disabled={loading}
+                  >
+                    {loading ? <Spinner animation="grow" /> : '  Add Member'}
                   </Button>
-                  {/* <button onClick={handleLogin} disabled={loading}>
-                    {loading ? (
-                      <Spinner animation="grow" />
-                    ) : (
-                      ' Submit Contribution'
-                    )}
-                  </button> */}
+
                   <div className="clearfix"></div>
                 </Form>
               </Card.Body>
