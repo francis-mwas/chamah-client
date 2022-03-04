@@ -50,7 +50,6 @@ function AddContribution() {
     if (!response) return;
   };
 
-  console.log('The id: ', response);
   console.log('The contribDetails: ', contribDetails.addUserContribution);
 
   return (
