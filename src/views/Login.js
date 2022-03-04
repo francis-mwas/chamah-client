@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useAuthState, useAuthDispatch } from '../../hooks';
+import { useAuthState, useAuthDispatch } from '../hooks';
 import { Spinner } from 'react-bootstrap';
 import { loginUser } from 'actions/userActions';
-import Loader from '../../components/Loader/Loader';
+import Loader from '../components/Loader/Loader';
 import styles from './login.module.css';
 
 function Login(props) {

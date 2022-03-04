@@ -12,7 +12,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // import Login from 'views/Login/index.js';
 import AdminLayout from 'layouts/Admin';
-import Login from 'views/Login/index';
+import Login from 'views/Login';
 
 import {
   AuthContextProvider,
