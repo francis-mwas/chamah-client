@@ -5,6 +5,7 @@ import UserProfile from 'views/UserProfile.js';
 import ListUsers from 'views/ListUsers';
 import ContributionDetails from 'views/ContributionDetails';
 import AddContribution from 'views/AddContribution';
+import AddMember from 'views/addMember';
 import Contributions from 'views/Contributions';
 import Typography from 'views/Typography.js';
 import Icons from 'views/Icons.js';
@@ -111,6 +112,15 @@ const appRoutes = {
       icon: 'nc-icon nc-notes',
       layout: '/admin',
       component: AddContribution,
+      isPrivate: true,
+    },
+    {
+      path: '/add-member',
+      hide: true,
+      name: 'add a new member',
+      icon: 'nc-icon nc-notes',
+      layout: '/admin',
+      component: AddMember,
       isPrivate: true,
     },
   ],

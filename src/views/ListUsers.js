@@ -35,7 +35,7 @@ function ListUsers() {
         <Row>
           <Col md="12">
             <Button variant="primary" className="my-2">
-              <Link to="/admin/add-contribution/">Add Contribution</Link>
+              <Link to="/admin/add-member">Add a new member</Link>
             </Button>
             <Card className="strpied-tabled-with-hover">
               <Card.Header>

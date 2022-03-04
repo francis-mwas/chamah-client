@@ -3,6 +3,7 @@ import {
   usersInitialState,
   UserListReducer,
   listUserDetailReducer,
+  AddNewUserReducer,
 } from 'reducers/userReducer';
 
 export const UserStateContext = createContext();
@@ -14,9 +15,12 @@ export const UserContextProvider = ({ children }) => {
     listUserDetailReducer,
     {}
   );
+  const [addMembers, addMembersDispatch] = useReducer(AddNewUserReducer, {});
   return (
-    <UserStateContext.Provider value={{ members, userDetails }}>
-      <UserStateDispatch.Provider value={{ dispatch, userDetailsDispatch }}>
+    <UserStateContext.Provider value={{ members, userDetails, addMembers }}>
+      <UserStateDispatch.Provider
+        value={{ dispatch, userDetailsDispatch, addMembersDispatch }}
+      >
         {children}
       </UserStateDispatch.Provider>
     </UserStateContext.Provider>
